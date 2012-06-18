@@ -42,39 +42,39 @@
   <a id="bookmark_link"><span id="bookmark"></span>Bookmark this lab</a>
   <a id="edgecase_link" href="http://edgecase.com" target="_blank">EdgeCase</a>
 </nav>
-    <h1 class="lab_title"><em>lab 3</em> Create a Project</h1>
+    <h1 class="lab_title"><em>章節 3</em> 建立專案</h1>
     <a href="http://edgecase.com" target=_blank" id="other_edgecase_link">EdgeCase</a>
   </header>
 
   <div id="main_content">
-    <h1 class="lab_title"><em>lab 3</em>  Create a Project</h1>
-<h3>Goals</h3>
+    <h1 class="lab_title"><em>章節 3</em>  建立專案</h1>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to create a git repository from scratch.</li>
+	<li>了解如何從頭開始創建一個 git 檔案庫。</li>
 </ul>
-<h2>Create a &#8220;Hello, World&#8221; program <em>01</em></h2>
-<p>Starting in the empty working directory, create an empty directory named &#8220;hello&#8221;, then create a file named <code>hello.rb</code> with the contents below.</p>
-<h4>Execute:</h4>
+<h2>建立 &#8220;Hello, World&#8221; 程式 <em>01</em></h2>
+<p>在空的工作目錄中建立, 建立一個空的目錄並取名為 &#8220;hello&#8221;, 然後建立一個檔案檔名為 <code>hello.rb</code> 步驟內容如下</p>
+<h4>執行:</h4>
 <pre class="instructions">mkdir hello
 cd hello</pre>
-<h4>File: <em>hello.rb</em></h4>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file">puts "Hello, World"
 </pre>
-<h2>Create the Repository <em>02</em></h2>
-<p>You now have a directory with a single file.  To create a git repository from that directory, run the git init command.</p>
-<h4>Execute:</h4>
+<h2>建立檔案庫 <em>02</em></h2>
+<p>現在您的目錄中有一個檔案。  在此目錄建立 git 檔案庫, 執行 git init 指令</p>
+<h4>執行:</h4>
 <pre class="instructions">git init</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git init
 Initialized empty Git repository in /Users/jerrynummi/Projects/edgecase/git_immersion/auto/hello/.git/
 </pre>
-<h2>Add the program to the repository <em>03</em></h2>
-<p>Now let&#8217;s add the &#8220;Hello, World&#8221; program to the repository.</p>
-<h4>Execute:</h4>
+<h2>納入檔案庫 <em>03</em></h2>
+<p>現在，讓我們將 &#8220;Hello, World&#8221; 檔案加入到檔案庫</p>
+<h4>執行:</h4>
 <pre class="instructions">git add hello.rb
 git commit -m "First Commit"</pre>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p>您將看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git add hello.rb
 $ git commit -m "First Commit"
 [master (root-commit) 3cbf83b] First Commit

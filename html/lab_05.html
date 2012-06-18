@@ -42,27 +42,27 @@
   <a id="bookmark_link"><span id="bookmark"></span>Bookmark this lab</a>
   <a id="edgecase_link" href="http://edgecase.com" target="_blank">EdgeCase</a>
 </nav>
-    <h1 class="lab_title"><em>lab 5</em> Making Changes</h1>
+    <h1 class="lab_title"><em>章節 5</em> 進行更改</h1>
     <a href="http://edgecase.com" target=_blank" id="other_edgecase_link">EdgeCase</a>
   </header>
 
   <div id="main_content">
-    <h1 class="lab_title"><em>lab 5</em>  Making Changes</h1>
+    <h1 class="lab_title"><em>章節 5</em>  Making Changes</h1>
 <h3>Goals</h3>
 <ul>
-	<li>Learn how to monitor the state of the working directory</li>
+	<li>了解如何監測工作目錄的狀態</li>
 </ul>
-<h2>Change the &#8220;Hello, World&#8221; program. <em>01</em></h2>
-<p>It&#8217;s time to change our hello program to take an argument from the command line.  Change the file to be:</p>
-<h4>File: <em>hello.rb</em></h4>
+<h2>編輯 &#8220;Hello, World&#8221; 檔案。 <em>01</em></h2>
+<p>現在我們來編輯我們的 hello.rb 程式，加入從命令列取得參數的功能，檔案內容如下:</p>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file">puts "Hello, #{ARGV.first}!"
 </pre>
-<h2>Check the status <em>02</em></h2>
-<p>Now check the status of the working directory.</p>
-<h4>Execute:</h4>
+<h2>檢視狀態<em>02</em></h2>
+<p>現在讓我們來查看工作目錄的狀態</p>
+<h4>執行:</h4>
 <pre class="instructions">git status</pre>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p>您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git status
 # On branch master
 # Changes not staged for commit:
@@ -73,10 +73,10 @@
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 </pre>
-<p>The first thing to notice is that git knows that the <code>hello.rb</code> file has been modified, but git has not yet been notified of these changes.</p>
-<p>Also notice that the status message gives you hints about what you need to do next.  If you want to add these changes to the repository, then use the <code>git add</code> command.  Otherwise the <code>git checkout</code> command can be used to discard the changes.</p>
-<h2>Up Next <em>03</em></h2>
-<p>Let&#8217;s stage the change.</p>
+<p>首先我們注意到 git 知道  <code>hello.rb</code> 檔案有了異動，但 git 並還沒收到這些改變的通知，意思是還沒記錄變更的內容。</p>
+<p>我們也注意到狀態回應的訊息，提示了下一步該怎麼做。如果你想追蹤這些變更的檔案（將檔案加入暫存區Staging Area）可以使用  <code>git add</code> 指令.  否則使用 <code>git checkout</code> 指令可以取消這些異動。意思是將目前工作目錄下您剛剛編輯的內容還原到編輯前的狀態。</p>
+<h2>下一步 <em>03</em></h2>
+<p>讓暫存區（Staging Area）有些異動...</p>
   </div>
 
   <div id="index">

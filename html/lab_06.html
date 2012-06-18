@@ -42,23 +42,24 @@
   <a id="bookmark_link"><span id="bookmark"></span>Bookmark this lab</a>
   <a id="edgecase_link" href="http://edgecase.com" target="_blank">EdgeCase</a>
 </nav>
-    <h1 class="lab_title"><em>lab 6</em> Staging Changes</h1>
+    <h1 class="lab_title"><em>章節 6</em> 暫存狀態修改</h1>
     <a href="http://edgecase.com" target=_blank" id="other_edgecase_link">EdgeCase</a>
   </header>
 
   <div id="main_content">
-    <h1 class="lab_title"><em>lab 6</em>  Staging Changes</h1>
-<h3>Goals</h3>
+    <h1 class="lab_title"><em>章節 6</em>  暫存狀態修改</h1>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to stage changes for later commits</li>
+	<li>了解暫存區（Staging Area）和送交之間的關係</li>
 </ul>
-<h2>Add Changes <em>01</em></h2>
-<p>Now tell git to stage the changes.  Check the status</p>
-<h4>Execute:</h4>
+<h2>編輯 <em>01</em></h2>
+<p>現在讓 git 追蹤檔案，用 git add 指令 把檔案加入暫存區（Staging Area），並檢視狀態。
+</p>
+<h4>執行:</h4>
 <pre class="instructions">git add hello.rb
 git status</pre>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p>您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git add hello.rb
 $ git status
 # On branch master
@@ -68,8 +69,8 @@ $ git status
 #	modified:   hello.rb
 #
 </pre>
-<p>The change to the <code>hello.rb</code> file has been staged.  This means that git now knows about the change, but the change hasn&#8217;t been <em>permanently</em> recorded in the repository yet.  The next commit operation will include the staged changes.</p>
-<p>If you decide you <em>don&#8217;t</em> want to commit that change after all, the status command reminds you that the <code>git reset</code> command can be used to unstage that change.</p>
+<p><code>hello.rb</code> 檔案的變更已經加入暫存區（Staging Area）。  這表示 git 現在收到那些變更的內容了。但是這些異動還沒被永久保存到檔案庫的記錄中。當您執行下一次 git commit 的操作時，暫存區（Staging Area）內所有的紀錄將一並被送交到檔案庫。</p>
+<p>如果您決定要放棄送交變更 <code>git status</code> 指令回應的提示訊息會提醒您使用<code>git reset</code> 指令，可以將暫存區的紀錄移除。</p>
   </div>
 
   <div id="index">
