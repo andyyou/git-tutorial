@@ -42,32 +42,32 @@
   <a id="bookmark_link"><span id="bookmark"></span>Bookmark this lab</a>
   <a id="edgecase_link" href="http://edgecase.com" target="_blank">EdgeCase</a>
 </nav>
-    <h1 class="lab_title"><em>lab 8</em> Committing Changes</h1>
+    <h1 class="lab_title"><em>章節 8</em> 送交修改</h1>
     <a href="http://edgecase.com" target=_blank" id="other_edgecase_link">EdgeCase</a>
   </header>
 
   <div id="main_content">
-    <h1 class="lab_title"><em>lab 8</em>  Committing Changes</h1>
-<h3>Goals</h3>
+    <h1 class="lab_title"><em>章節 8</em>  送交修改</h1>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to commit changes to the repository</li>
+	<li>了解如何將修改的內容送交到檔案庫</li>
 </ul>
-<h2>Commit the change <em>01</em></h2>
-<p>Ok, enough about staging.  Let&#8217;s commit what we have staged to the repository.</p>
-<p>When you used <code>git commit</code> previously to commit the initial version of the <code>hello.rb</code> file to the repository, you included the <code>-m</code> flag that gave a comment on the command line.  The commit command will allow you to interactively edit a comment for the commit.  Let&#8217;s try that now.</p>
-<p>If you omit the <code>-m</code> flag from the command line, git will pop you into the editor of your choice.  The editor is chosen from the following list (in priority order):</p>
+<h2>送交已變更檔案 <em>01</em></h2>
+<p>好了！到目前為止我們談了很多關於暫存（Staging）的運用和觀念。 接著讓我們將這些異動保存到檔案庫中吧！</p>
+<p>當您使用<code>git commit</code> 送交<code>hello.rb</code>檔案初始版本到檔案庫之前，, 您可以加上 <code>-m</code> 參數來幫這次的送交下註解。 git commit 還提供了互動的方式來對該次地送交設定註解。現在讓我們來操作看看</p>
+<p>如果你省略 <code>-m</code> 參數，git 會自動開啟預設的文字編輯器。  編輯器將會按照您的偏好設定的參數如下列表順序:</p>
 <ul>
 	<li>GIT_EDITOR environment variable</li>
 	<li>core.editor configuration setting</li>
 	<li><span class="caps">VISUAL</span> environment variable</li>
 	<li><span class="caps">EDITOR</span> environment variable</li>
 </ul>
-<p>I have the <span class="caps">EDITOR</span> variable set to <code>emacsclient</code>.</p>
-<p>So commit now and check the status.</p>
-<h4>Execute:</h4>
+<p>我的預設編輯器<span class="caps">EDITOR</span> 設定為 <code>emacsclient</code>.</p>
+<p>接著送交並且檢視狀態。</p>
+<h4>執行:</h4>
 <pre class="instructions">git commit</pre>
-<p>You should see the following in your editor:</p>
-<h4>Output:</h4>
+<p>您將會看到下面內容在您的編輯器中（通常在Unix like環境下是vi/vim）:</p>
+<h4>輸出:</h4>
 <pre class="sample">|
 # Please enter the commit message for your changes. Lines starting
 # with '#' will be ignored, and an empty message aborts the commit.
@@ -78,25 +78,25 @@
 #	modified:   hello.rb
 #
 </pre>
-<p>On the first line, enter the comment: &#8220;Using <span class="caps">ARGV</span>&#8221;.  Save the file and exit the editor.  You should see &#8230;</p>
-<h4>Output:</h4>
+<p>在第一行輸入註解: &#8220;Using <span class="caps">ARGV</span>&#8221;.  存檔並離開編輯器.  您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">git commit
 Waiting for Emacs...
 [master 569aa96] Using ARGV
  1 files changed, 1 insertions(+), 1 deletions(-)
 </pre>
-<p>The &#8220;Waiting for Emacs&#8230;&#8221; line comes from the <code>emacsclient</code> program which sends the file to a running emacs program and waits for the file to be closed.  The rest of the output is the standard commit messages.</p>
-<h2>Check the status <em>02</em></h2>
-<p>Finally let&#8217;s check the status again.</p>
-<h4>Execute:</h4>
+<p> &#8220;Waiting for Emacs&#8230;&#8221; 這行訊息來自<code>emacsclient</code> 應用程式，它將檔案送到正在運行的 emacs 等待檔案處理完並結束程式。其他的回應訊息則是 git 所提供的互動訊息。</p>
+<h2>檢視狀態 <em>02</em></h2>
+<p>最後，讓我們再來檢視一次狀態</p>
+<h4>執行:</h4>
 <pre class="instructions">git status</pre>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p>您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git status
 # On branch master
 nothing to commit (working directory clean)
 </pre>
-<p>The working directory is clean and ready for you to continue.</p>
+<p>工作目錄的狀態和檔案庫一致，顯示的訊息非常單純，沒有任何變更需要送交。而您可以繼續執行其他動作。</p>
   </div>
 
   <div id="index">
