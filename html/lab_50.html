@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lab 50 - Git Immersion - Brought to you by EdgeCase</title>
+  <title>章節 50 - Git Immersion - Brought to you by EdgeCase</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" media="screen" href="screen.css">
@@ -48,24 +48,24 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 50</em>  建立 Git 檔案庫伺服器</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to setup git server for sharing repositories.</li>
+	<li>了解如何設定 git 伺服器來分享檔案庫。</li>
 </ul>
-<p>There are many ways to share git repositories over the network. Here is a quick and dirty way.</p>
-<h2>Start up the git server <em>01</em></h2>
-<h4>Execute:</h4>
-<pre class="instructions"># (From the work directory)
+<p>透過網路分享 git 檔案庫有很多方式。 這邊介紹一個快速但不恰當的方法。</p>
+<h2>啟動 git 伺服器 <em>01</em></h2>
+<h4>執行:</h4>
+<pre class="instructions"># (從工作目錄)
 git daemon --verbose --export-all --base-path=.</pre>
-<p>Now, in a separate terminal window, go to your work directory</p>
-<h4>Execute:</h4>
-<pre class="instructions"># (From the work directory)
+<p>現在，在另一個獨立的終端機視窗，進入你的工作目錄</p>
+<h4>執行:</h4>
+<pre class="instructions"># (從工作目錄)
 git clone git://localhost/hello.git network_hello
 cd network_hello
 ls</pre>
-<p>You should see a copy of hello project.</p>
-<h2>Pushing to the Git Daemon <em>02</em></h2>
-<p>If you want to push to the git daemon repository, add <code>--enable=receive-pack</code> to the git daemon command.  Be careful because there is no authentication on this server, anyone could push to your repository.</p>
+<p>你應該看到一個 hello 專案的副本。</p>
+<h2>送交到 Git 程序 <em>02</em></h2>
+<p>如果你想送交到 git 程序檔案庫，加入 <code>--enable=receive-pack</code> 到 git 程序命令。 要注意的是此伺服器沒有認證，任何人皆可送交到你的檔案庫。</p>
   </div>
 
   <div id="index">
