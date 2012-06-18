@@ -53,19 +53,23 @@
 	<li>準備工作前的設定</li>
 </ul>
 <h2>設定姓名 和 Email <em>01</em></h2>
-<p>If you have never used git before, you need to do some setup first. Run the following commands so that git knows your name and email.  If you have git already setup, you can skip down to the line ending section.</p>
-<h4>Execute:</h4>
+<p>如果你從來沒有使用過 git，那麼您需要做一些第一次的設定。執行以下的指令，設定git中的名稱和電子郵件。  如果您已經設定過了您可以跳過這個部分。</p>
+<h4>執行:</h4>
 <pre class="instructions">git config --global user.name "Your Name"
 git config --global user.email "your_email@whatever.com"</pre>
-<h2>Setup Line Ending Preferences <em>02</em></h2>
-<p>Also, for Unix/Mac users:</p>
-<h4>Execute:</h4>
+<h2>換行字元的偏好設定 <em>02</em></h2>
+<p>Unix/Mac 使用者:</p>
+<h4>執行:</h4>
 <pre class="instructions">git config --global core.autocrlf input
 git config --global core.safecrlf true</pre>
-<p>And for Windows users:</p>
-<h4>Execute:</h4>
+<p>Windows 使用者:</p>
+<h4>執行:</h4>
 <pre class="instructions">git config --global core.autocrlf true
 git config --global core.safecrlf true</pre>
+<h4>說明:</h4>
+<pre class="instructions">
+Windows 因為處理換行字元和 Unix like 不同會造成 Git 誤判成有修改因此需多設定
+</pre>
   </div>
 
   <div id="index">
