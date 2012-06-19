@@ -2,23 +2,13 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-  <title>Lab 48 - Git Immersion - Brought to you by EdgeCase</title>
+  <title>章節 48 - Git Immersion - Brought to you by EdgeCase</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" media="screen" href="screen.css">
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <script type="text/javascript">
-   var _gaq = _gaq || [];
-   _gaq.push(['_setAccount', 'UA-1142510-7']);
-   _gaq.push(['_trackPageview']);
-   (function() {
-     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-   })();
-  </script>
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript" src="jquery.hotkeys.js"></script>
   <script type="text/javascript" src="UI.js"></script>
@@ -49,30 +39,30 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 48</em>  送交修改</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how out to push a change to a remote repository.</li>
+	<li>學習如何送交修改至遠端檔案庫。</li>
 </ul>
-<p>Since bare repositories are usually shared on some sort of network server, it is usually difficult to cd into the repo and pull changes. So we need to push our changes into other repositories.</p>
-<p>Let&#8217;s start by creating a change to be pushed.  Edit the <span class="caps">README</span> and commit it</p>
-<h4>File: <em><span class="caps">README</span></em></h4>
+<p>由於無工作目錄副本的檔案庫通常作為共享檔案庫儲存在網路伺服器上，通常難以進入該檔案庫內拉取其它檔案庫的修改。所以我們需要將我們的修改送交到遠端檔案庫中。</p>
+<p>讓我們開始建立一個要送交的修改。 編輯 <span class="caps">README</span> 並送交</p>
+<h4>檔案: <em><span class="caps">README</span></em></h4>
 <pre class="file">This is the Hello World example from the git tutorial.
 (Changed in the original and pushed to shared)
 </pre>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">git checkout master
 git add README
 git commit -m "Added shared comment to readme"</pre>
-<p>Now push the change to the shared repo.</p>
-<h4>Execute:</h4>
+<p>現在把修改送交到共享檔案庫中。</p>
+<h4>執行:</h4>
 <pre class="instructions">git push shared master</pre>
-<p><em>shared</em> is the name of the repository receiving the changes we are pushing. (Remember, we added it as a remote in the previous lab.)</p>
-<h4>Output:</h4>
+<p><em>shared</em> 是我們送交修改的目的端檔案庫名稱。 (還記得嗎，我們在上一章節將它加入為遠端檔案庫。)</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git push shared master
 To ../hello.git
    e18658c..e4b00d1  master -&gt; master
 </pre>
-<p class="note"><strong><span class="caps">NOTE</span>:</strong> We had to explicitly name the branch master that was receiving the push.  It is possible to set it up automatically, but I <em>never</em> remember the commands to do that.  Check out the &#8220;Git Remote Branch&#8221; gem for easy management of remote branches.</p>
+<p class="note"><strong><span class="caps">注意</span>:</strong> 我們必須明確指出送交修改的目的端檔案庫名稱。 這可以透過設定自動指定，但我永遠記得使用命令來做到這一點。</p>
   </div>
 
   <div id="index">
@@ -126,7 +116,7 @@ To ../hello.git
           <li id="lab_43_link" data-lab-id="43"><a href="lab_43.html"><span>43:</span> 合併拉取的修改</a></li>
           <li id="lab_44_link" data-lab-id="44"><a href="lab_44.html"><span>44:</span> 拉取修改</a></li>
           <li id="lab_45_link" data-lab-id="45"><a href="lab_45.html"><span>45:</span> 加入一個追蹤分支</a></li>
-          <li id="lab_46_link" data-lab-id="46"><a href="lab_46.html"><span>46:</span> 無副本的檔案庫</a></li>
+          <li id="lab_46_link" data-lab-id="46"><a href="lab_46.html"><span>46:</span> 無工作目錄副本的檔案庫</a></li>
           <li id="lab_47_link" data-lab-id="47"><a href="lab_47.html"><span>47:</span> 加入一個遠端檔案庫</a></li>
           <li id="lab_48_link" data-lab-id="48"><a href="lab_48.html"><span>48:</span> 送交修改</a></li>
           <li id="lab_49_link" data-lab-id="49"><a href="lab_49.html"><span>49:</span> 拉取共享檔案庫的修改</a></li>
