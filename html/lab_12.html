@@ -49,29 +49,29 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 12</em>  取得舊版本</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to checkout any previous snapshot into the working directory.</li>
+	<li>了解如何簽出（取得）之前的版本到工作目錄。</li>
 </ul>
-<p>Going back in history is very easy.  The checkout command will copy any snapshot from the repository to the working directory.</p>
-<h2>Get the hashes for previous versions <em>01</em></h2>
-<h4>Execute:</h4>
+<p>還原到之前的任何一個版本是非常簡單的。   checkout 指令可以從檔案庫中複製任何時間點的快照（當下時間點的檔案內容和所有記錄）到工作目錄中。</p>
+<h2>取得版本的 hash 編碼  <em>01</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git hist</pre>
-<p class="note"><strong>Note:</strong> You did remember to define <code>hist</code> in your <code>.gitconfig</code> file, right?  If not, review the lab on aliases.</p>
-<h4>Output:</h4>
+<p class="note"><strong>注意:</strong> 記得您已經定義了 <code>hist</code> 在您的 <code>.gitconfig</code> 檔案了嗎?  如果沒有請回顧之前的章節設定別名。</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist
 * 4054321 2012-03-06 | Added a comment (HEAD, master) [Jim Weirich]
 * 1b754e9 2012-03-06 | Added a default value [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>Examine the log output and find the hash for the first commit.  It should be the last line of the <code>git hist</code> output.  Use that hash code (the first 7 characters are enough) in the command below.  Then check the contents of the hello.rb file.</p>
-<h4>Execute:</h4>
+<p>找到注解為 first commit 對應的 hash 您可以把 hash 當成是一個對應的 ID 。 一般來說他會在最後一行。 使用 hash 編碼配合下面的指令來回復版本（ hash 編碼看起來很長，實際上在下指令的時候您只需要前七個字元就夠了 ）。回復之後觀察一下 hello.rb 檔案的內容。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout &lt;hash&gt;
 cat hello.rb</pre>
-<p class="note"><strong>Note:</strong> The commands given here are Unix commands and work on both Mac and Linux boxes.  Unfortunately, Windows users will have to translate to their native commands.</p>
-<p class="note"><strong>Note:</strong> Many commands depend on the hash values in the repository.  Since your hash values will vary from mine, whenever you see something like &lt;hash&gt; or &lt;treehash&gt; in the command, substitute in the proper hash value for your repository.</p>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p class="note"><strong>注意:</strong> 有些指令只有在 Unix like 系統底下才能使用 例如： cat 不幸的是 Windows的使用者可能要對應系統預設的指令像 ls 對應 dir，但您安裝其他工具像是 Cygwin ，git bash 之類的東西。</p>
+<p class="note"><strong>注意:</strong> 很多指令會用到檔案庫的 hash 編碼。 由於您檔案庫中的 hash 和本文件中會有很大的不同，所有&lt;hash&gt;或者&lt;treehash&gt;的地方，都需要您自行替換成您查閱到的值 。</p>
+<p>您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout 3cbf83b
 Note: checking out '3cbf83b'.
 
@@ -88,14 +88,14 @@ HEAD is now at 3cbf83b... First Commit
 $ cat hello.rb
 puts "Hello, World"
 </pre>
-<p>The output of the <code>checkout</code> command explains the situation pretty well.  Older versions of git will complain about not being on a local branch.  In any case, don&#8217;t worry about that for now.</p>
-<p>Notice the contents of the hello.rb file are the original contents.</p>
-<h2>Return the latest version in the master branch <em>02</em></h2>
-<h4>Execute:</h4>
+<p><code>checkout</code> 指令輸出了目前完整的狀態。 舊版的 git 可能會沒有本地端的分支資訊。不過，現在您不需要擔心這個。</p>
+<p>注意 hello.rb 檔案的內容已經回到舊版了。</p>
+<h2>還原到主分支最新的版本<em>02</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git checkout master
 cat hello.rb</pre>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p>您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout master
 Previous HEAD position was 3cbf83b... First Commit
 Switched to branch 'master'
@@ -105,7 +105,7 @@ name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<p>&#8216;master&#8217; is the name of the default branch.  By checking out a branch by name, you go to the lastest version of that branch.</p>
+<p>&#8216;master&#8217; 是主分支預設的名稱。使用分支名稱來簽出就會取得該分支最新的版本（檔案）。</p>
   </div>
 
   <div id="index">
