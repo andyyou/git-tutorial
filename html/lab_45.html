@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lab 45 - Git Immersion - Brought to you by EdgeCase</title>
+  <title>章節 45 - Git Immersion - Brought to you by EdgeCase</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" media="screen" href="screen.css">
@@ -48,17 +48,17 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 45</em>  加入一個追蹤分支</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to add a local branch that tracks a remote branch.</li>
+	<li>學習如何建立一個追蹤遠端分支的本地端分支。</li>
 </ul>
-<p>The branches starting with remotes/origin are branches from the original repo.  Notice that you don&#8217;t have a branch called greet anymore, but it knows that the original repo had a greet branch.</p>
-<h2>Add a local branch that tracks a remote branch. <em>01</em></h2>
-<h4>Execute:</h4>
+<p>以 remotes/origin 為名的分支來自於原始檔案庫。 注意，你還沒有一個名為 greet 的分支，但 Git 知道原始檔案庫中有 greet 分支。</p>
+<h2>加入一個追蹤遠端分支的本地端分支。 <em>01</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git branch --track greet origin/greet
 git branch -a
 git hist --max-count=2</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git branch --track greet origin/greet
 Branch greet set up to track remote branch greet from origin.
 $ git branch -a
@@ -70,7 +70,7 @@ $ git branch -a
 $ git hist --max-count=2
 * e18658c 2012-03-06 | Changed README in original repo (HEAD, origin/master, origin/HEAD, master) [Jim Weirich]
 * e1399d1 2012-03-06 | Updated Rakefile (origin/greet, greet) [Jim Weirich]</pre>
-<p>We can now see the greet branch in the branch list and in the log.</p>
+<p>我們現在就能在分支清單及歷史記錄中看到 greet 分支。</p>
   </div>
 
   <div id="index">
@@ -124,7 +124,7 @@ $ git hist --max-count=2
           <li id="lab_43_link" data-lab-id="43"><a href="lab_43.html"><span>43:</span> 合併拉取的修改</a></li>
           <li id="lab_44_link" data-lab-id="44"><a href="lab_44.html"><span>44:</span> 拉取修改</a></li>
           <li id="lab_45_link" data-lab-id="45"><a href="lab_45.html"><span>45:</span> 加入一個追蹤分支</a></li>
-          <li id="lab_46_link" data-lab-id="46"><a href="lab_46.html"><span>46:</span> 無副本的檔案庫</a></li>
+          <li id="lab_46_link" data-lab-id="46"><a href="lab_46.html"><span>46:</span> 無工作目錄副本的檔案庫</a></li>
           <li id="lab_47_link" data-lab-id="47"><a href="lab_47.html"><span>47:</span> 加入一個遠端檔案庫</a></li>
           <li id="lab_48_link" data-lab-id="48"><a href="lab_48.html"><span>48:</span> 送交修改</a></li>
           <li id="lab_49_link" data-lab-id="49"><a href="lab_49.html"><span>49:</span> 拉取共享檔案庫的修改</a></li>
