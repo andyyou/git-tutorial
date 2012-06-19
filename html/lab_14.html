@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8"/>
   <title>章節 14 - Git Immersion - Brought to you by EdgeCase</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,6 @@
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <script type="text/javascript">
-   var _gaq = _gaq || [];
-   _gaq.push(['_setAccount', 'UA-1142510-7']);
-   _gaq.push(['_trackPageview']);
-   (function() {
-     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-   })();
-  </script>
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript" src="jquery.hotkeys.js"></script>
   <script type="text/javascript" src="UI.js"></script>
@@ -48,28 +39,28 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 14</em>  復原本地端的修改 (在暫存之前)</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to revert changes in the working directory</li>
+	<li>了解如何回復工作目錄的修改。 git 提供您可以放棄還未追蹤前的所有變動。</li>
 </ul>
-<h2>Checkout Master <em>01</em></h2>
-<p>Make sure you are on the lastest commit in master before proceeding.</p>
-<h4>Execute:</h4>
+<h2>切換回 master 分支 <em>01</em></h2>
+<p>在繼續之前，請先確認您正簽出 master 最新的版本。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout master</pre>
-<h2>Change hello.rb <em>02</em></h2>
-<p>Sometimes you have modified a file in your local working directory and you wish to just revert to what has already been committed.  The checkout command will handle that.</p>
-<p>Change hello.rb to have a bad comment.</p>
-<h4>File: <em>hello.rb</em></h4>
+<h2>編輯 hello.rb <em>02</em></h2>
+<p>有些時候，您在本地的工作目錄編輯了一些檔案，這些變更造成了一些錯誤，您想回到剛剛編輯前的狀態（就是上一次或剛剛送交到檔案庫的內容，或者剛複製下來的內容）這個時候您可以使用 git checkout 來放棄您剛剛的編輯。</p>
+<p>編輯 hello.rb 在裡面加入一些不好的註解</p>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file"># This is a bad comment.  We want to revert it.
 name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<h2>Check the Status <em>03</em></h2>
-<p>First, check the status of the working directory.</p>
-<h4>Execute:</h4>
+<h2>檢視檔案庫的狀態 <em>03</em></h2>
+<p>首先，觀察工作目錄的狀態。</p>
+<h4>執行:</h4>
 <pre class="instructions">git status</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git status
 # On branch master
 # Changes not staged for commit:
@@ -80,14 +71,14 @@ puts "Hello, #{name}!"
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 </pre>
-<p>We see that the <code>hello.rb</code> file has been modified, but hasn&#8217;t been staged yet.</p>
-<h2>Revert the changes in the working directory <em>04</em></h2>
-<p>Use the <code>checkout</code> command to checkout the repository&#8217;s version of the <code>hello.rb</code> file.</p>
-<h4>Execute:</h4>
+<p>接著我們會看到<code>hello.rb</code> 檔案已經有了一些變動，但我們還沒把它加入暫存（Staging Area）回應的提示顯示 Changes not staged for commit 意思就是有異動但還沒加到 Staging。 </p>
+<h2>把工作目錄內的檔案回復到修改之前 <em>04</em></h2>
+<p>使用 <code>git checkout</code> 指令其實就等同於簽出檔案庫版本的<code>hello.rb</code>內容。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout hello.rb
 git status
 cat hello.rb</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout hello.rb
 $ git status
 # On branch master
@@ -98,7 +89,25 @@ name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<p>The status command shows us that there are no outstanding changes in the working directory.  And the &#8220;bad comment&#8221; is no longer part of the file contents.</p>
+<p>現在 git status 指令回應工作目錄中沒有任何變更可以提交，而且剛剛加入的 bad comment 這行註解也不見了。</p>
+<h4>其他:</h4>
+<p>上面這個步驟說明了，您可以利用 git checkout 這個指令放棄掉目前的變動讓版本回到跟“目前檔案庫分支”的狀態一樣，所以延伸的一個疑問是：那如果我在這個時候（編輯之後不 Staged）切換分支在 checkout 會發生什麼事情。 答案是： git 不允許您這樣做。當您工作目錄有變更時且沒有 commit 和 add 是不准切換分支。</p>
+<pre class="sample">
+$  git co greet
+error: Your local changes to the following files would be overwritten by checkout:
+	README
+Please, commit your changes or stash them before you can switch branches.
+Aborting
+$  git st
+# On branch master
+# Changes not staged for commit:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#	modified:   README
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
   </div>
 
   <div id="index">

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8"/>
   <title>章節 11 - Git Immersion - Brought to you by EdgeCase</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,6 @@
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <script type="text/javascript">
-   var _gaq = _gaq || [];
-   _gaq.push(['_setAccount', 'UA-1142510-7']);
-   _gaq.push(['_trackPageview']);
-   (function() {
-     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-   })();
-  </script>
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript" src="jquery.hotkeys.js"></script>
   <script type="text/javascript" src="UI.js"></script>
@@ -48,14 +39,14 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 11</em>  別名</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to setup aliases and shortcuts for git commands</li>
+	<li>學習如何設定 git 指令的別名（Alias） 和 捷徑</li>
 </ul>
-<h2>Common Aliases <em>01</em></h2>
-<p><ins>git status</ins>, <ins>git add</ins>, <ins>git commit</ins>, and <ins>git checkout</ins> are such common commands that it is useful to have abbreviations for them.</p>
-<p>Add the following to the .gitconfig file in your $<span class="caps">HOME</span> directory.</p>
-<h4>File: <em>.gitconfig</em></h4>
+<h2>一般指令別名 <em>01</em></h2>
+<p><ins>git status</ins>, <ins>git add</ins>, <ins>git commit</ins>, 和 <ins>git checkout</ins> 這些是很常使用的指令，簡化指令將對使用上很有幫助。</p>
+<p>在您$<span class="caps">HOME</span>目錄下編輯  .gitconfig 檔案加入下面的設定:</p>
+<h4>檔案: <em>.gitconfig</em></h4>
 <pre class="file">[alias]
   co = checkout
   ci = commit
@@ -65,16 +56,16 @@
   type = cat-file -t
   dump = cat-file -p
 </pre>
-<p>We&#8217;ve covered checkout, commit and status already.  And we just covered the <code>log</code> command in the previous lab. Now you can type <code>git co</code> wherever you used to have to type <code>git checkout</code>.  Likewise with <code>git st</code> for <code>git status</code> and <code>git ci</code> for <code>git commit</code>.  And best of all, <code>git hist</code> will allow you to avoid the really long <code>log</code> command.</p>
-<p>Go ahead and give the new commands a try.</p>
-<h2>Define the <code>hist</code> alias in your <code>.gitconfig</code> file <em>02</em></h2>
-<p>For the most part, I will continue to type out the full command in these instructions.  The only exception is that I will use the <code>hist</code> alias defined above anytime we need to see the git log output.  Make sure you have a <code>hist</code> alias setup in your <code>.gitconfig</code> file before continuing if you wish to follow along.</p>
-<h2><code>Type</code> and <code>Dump</code> <em>03</em></h2>
-<p>We&#8217;ve added a few aliases for commands we haven&#8217;t covered yet. The <code>git branch</code> command will be coming up soon.  And the <code>git cat-file</code> command is useful for exploring git, which we will see in a little while.</p>
-<h2>Shell Aliases (Optional) <em>04</em></h2>
-<p class="note"><strong>Note:</strong> This section is for folks running a posix-like shell. Windows users and other non-posix shell users can feel free to skip to the next lab.</p>
-<p>If your shell supports aliases or shortcuts, then you can add aliases at that level too.  Here are the ones I use:</p>
-<h4>File: <em>.profile</em></h4>
+<p>我們已經設定了包含 checkout, commit 和 status 的縮寫.  加上應用上一章節 <code>log</code> 指令的參數變化。 現在您可以輸入 <code>git co</code> 等同於輸入 <code>git checkout</code>.  其它像是 <code>git st</code> 對應 <code>git status</code> 以及 <code>git ci</code> 對應 <code>git commit</code>。  最棒的是 <code>git hist</code> 您可以使用像上一章節旗艦版的指令卻不需要輸入一長串 <code>log</code> 指令加參數。</p>
+<p>繼續來試試看其他新指令。</p>
+<h2>在<code>.gitconfig</code> 定義 <code>hist</code> 別名來查看歷史紀錄 <em>02</em></h2>
+<p>在其他章節和大部分的情況下，我將在文章中繼續使用完整的指令。唯一的例外是我會使用 <code>hist</code> 來查看 log 歷史訊息。 所以確認您已經設定 <code>hist</code> 別名在您的 <code>.gitconfig</code> </p>
+<h2><code>Type</code> 和 <code>Dump</code> <em>03</em></h2>
+<p>同時我們已經加入一些其他我們還沒用到的別名。 我們很快會用到 <code>git branch</code> 還有 <code>git cat-file</code> 指令這些常用來瀏覽查看 git 的指令。</p>
+<h2>命令列別名 (Unix Like 選用) <em>04</em></h2>
+<p class="note"><strong>注意:</strong> 這個部分是針對 posix-like shell 的使用者。 Windows 的使用者和其它沒有 Shell 的使用者可以跳過這個部分。 這部分只是要讓常用的指令更加精簡。 Windows使用者若要使用可使用 Cygwin 。</p>
+<p>如果您的 shell 支援別名或捷徑那麼您也可以使用。這裡提供一下我使用的設定:</p>
+<h4>檔案: <em>.profile</em></h4>
 <pre class="file">alias gs='git status '
 alias ga='git add '
 alias gb='git branch '
@@ -87,10 +78,10 @@ alias gx='gitx --all'
 alias got='git '
 alias get='git '
 </pre>
-<p>The <code>go</code> abbreviation for <code>git checkout</code> is particularly nice.  It allows me to type:</p>
+<p> <code>git checkout</code> 縮寫成  <code>go</code> 恰巧特別有含義。 :</p>
 <pre class="instructions">go &lt;branch&gt;</pre>
-<p>to checkout a particular branch.</p>
-<p>And yes, I do mistype <code>git</code> as <code>get</code> or <code>got</code> often enough to create aliases for them.</p>
+<p>可以切換到指定的分支（branch）</p>
+<p>而且我常常誤把 <code>git</code> 打成 <code>get</code> 或 <code>got</code> 所以我也把這個常犯的錯誤加入設定，當我打成 got 或 get 時還是會執行 git。</p>
   </div>
 
   <div id="index">

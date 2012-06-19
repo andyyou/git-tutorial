@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8"/>
   <title>章節 9 - Git Immersion - Brought to you by EdgeCase</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,6 @@
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <script type="text/javascript">
-   var _gaq = _gaq || [];
-   _gaq.push(['_setAccount', 'UA-1142510-7']);
-   _gaq.push(['_trackPageview']);
-   (function() {
-     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-   })();
-  </script>
   <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript" src="jquery.hotkeys.js"></script>
   <script type="text/javascript" src="UI.js"></script>
@@ -48,37 +39,39 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 9</em>  改變，而不僅是檔案</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
 	<li>了解 git 是紀錄內容狀態的改變，而不只是儲存檔案。</li>
 </ul>
-<p>Most source control systems work with files.  You add a file to source control and the system will track changes to the file from that point on.</p>
-<p>Git focuses on the changes to a file rather than the file itself. When you say <code>git add file</code>, you are not telling git to add the file to the repository.  Rather you are saying that git should make note of the current state of that file to be committed later.</p>
-<p>We will attempt to explore that difference in this lab.</p>
-<h2>First Change: Allow a default name <em>01</em></h2>
-<p>Change the &#8220;Hello, World&#8221; program to have a default value if a command line argument is not supplied.</p>
-<h4>File: <em>hello.rb</em></h4>
+<p>大部分的版本控制系統是針對檔案作記錄。 您加入一個檔案到版本控制然後系統追蹤這個檔案的變化。</p>
+<p>比起檔案本身，git 關注的是檔案內容的變更。當您執行 git add file ，您不只是讓 git 把檔案加入檔案庫，而是讓 git 記錄當下檔案所有的狀態，這意思是包含每一次送交的註解，變更了哪些內容，然後送交到檔案庫。
+
+</p>
+<p>現在讓我們試著透過實際操作來理解上面這段話。看看這有哪些不同。</p>
+<h2>第一次編輯: 使用預設值 <em>01</em></h2>
+<p>編輯 &#8220;Hello, World&#8221; 程式使用預設值，當命令列沒有值傳回時使用預設"World"</p>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file">name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<h2>Add this Change <em>02</em></h2>
-<p>Now add this change to the git&#8217;s staging area.</p>
-<h4>Execute:</h4>
+<h2>加入暫存區 <em>02</em></h2>
+<p>現在，將變更加入暫存區，或稱之為追蹤變更。</p>
+<h4>執行:</h4>
 <pre class="instructions">git add hello.rb</pre>
-<h2>Second change: Add a comment <em>03</em></h2>
-<p>Now add a comment to the &#8220;Hello, World&#8221; program.</p>
-<h4>File: <em>hello.rb</em></h4>
+<h2>第二次編輯: 加入註解 <em>03</em></h2>
+<p>加入一行註解到 &#8220;Hello, World&#8221; 檔案中</p>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file"># Default is "World"
 name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<h2>Check the current status <em>04</em></h2>
-<h4>Execute:</h4>
+<h2>檢視目前狀態 <em>04</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git status</pre>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p>您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git status
 # On branch master
 # Changes to be committed:
@@ -93,15 +86,15 @@ puts "Hello, #{name}!"
 #	modified:   hello.rb
 #
 </pre>
-<p>Notice how <code>hello.rb</code> is listed twice in the status.  The first change (adding a default) is staged and is ready to be committed.  The second change (adding a comment) is unstaged.  If you were to commit right now, the comment would not be saved in the repository.</p>
-<p>Let&#8217;s try that.</p>
-<h2>Committing <em>05</em></h2>
-<p>Commit the staged change (the default value), and then recheck the status.</p>
-<h4>Execute:</h4>
+<p>注意到 <code>hello.rb</code> 列出了兩種不同的狀態。 第一次加入預設值然後加入暫存區（追蹤狀態）。 第二次編輯加入註解然後沒有追蹤狀態。 如果你現在送交會發現有註解的版本並沒有存到檔案庫。</p>
+<p>接著再試試...</p>
+<h2>執行送交 <em>05</em></h2>
+<p>送交已加入暫存的改變，或者說送交已經追蹤的狀態 (第一次編輯的狀態)， 然後再用 git status 檢視一次狀態。</p>
+<h4>執行:</h4>
 <pre class="instructions">git commit -m "Added a default value"
 git status</pre>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p>您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git commit -m "Added a default value"
 [master 1b754e9] Added a default value
  1 files changed, 3 insertions(+), 1 deletions(-)
@@ -115,16 +108,16 @@ $ git status
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 </pre>
-<p>The status command is telling you that <code>hello.rb</code> has unrecorded changes, but is no longer in the staging area.</p>
-<h2>Add the Second Change <em>06</em></h2>
-<p>Now add the second change to staging area, then run git status.</p>
-<h4>Execute:</h4>
+<p>回應的訊息告訴我們<code>hello.rb</code>還有一些沒有被追蹤的變更， 但這些變更並沒有被加入暫存區。</p>
+<h2>追蹤第二次編輯<em>06</em></h2>
+<p>現在將第二次編輯所變更的內容加到暫存區，然後再執行一次 git status 檢視狀態。</p>
+<h4>執行:</h4>
 <pre class="instructions">git add .
 git status</pre>
-<p class="note"><strong>Note:</strong> We used the current directory (&#8216;.&#8217;) as the file to add.  This is a really convenient shortcut for adding in all the changes to the files in the current directory and below.  But since it adds everything, it is a <em>really</em> good idea to check the status before doing an <tt>add .</tt>, just to make sure you don&#8217;t add any file that is not intended.</p>
-<p class="note">I wanted you to see the &#8220;add .&#8221; trick, but we will continue to add explicit files in the rest of this tutorial just to be safe.</p>
-<p>You should see &#8230;</p>
-<h4>Output:</h4>
+<p class="note"><strong>注意:</strong> 我們使用所在目錄的路徑 (&#8216;.&#8217;) 來加入。  這可以快速將目前目錄，子目錄所有有變更的檔案加入到暫存區（Staging Area）。但是因為這一招會將所久的東西都加到暫存區，所以在執行之前最好檢查一下狀態以確保加入正確該加入的檔案。</p>
+
+<p>您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git status
 # On branch master
 # Changes to be committed:
@@ -133,9 +126,9 @@ git status</pre>
 #	modified:   hello.rb
 #
 </pre>
-<p>Now the second change has been staged and is ready to commit.</p>
-<h2>Commit the Second Change <em>07</em></h2>
-<h4>Execute:</h4>
+<p>現在第二次編輯的修改都被存到暫存區了</p>
+<h2>送交第二次編輯 <em>07</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git commit -m "Added a comment"</pre>
   </div>
 
