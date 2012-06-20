@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/>
   <title>章節 42 - Git Immersion - Brought to you by EdgeCase</title>
+  <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" media="screen" href="screen.css">
@@ -25,12 +25,12 @@
   <header id="header">
     <a href="index.html" id="home_link">Git Immersion</a>
     <nav id="pager">
-      <a id="arrow_next" class="arrow" href="lab_43.html">Next</a>
+      <a id="arrow_next" class="arrow" href="lab_43.html">下一頁</a>
   
-      <a id="arrow_previous" class="arrow" href="lab_41.html">Previous</a>
+      <a id="arrow_previous" class="arrow" href="lab_41.html">上一頁</a>
   
-  <a id="table_of_contents_link" href="#">Table of Contents</a>
-  <a id="bookmark_link"><span id="bookmark"></span>Bookmark this lab</a>
+  <a id="table_of_contents_link" href="#">目錄</a>
+  <a id="bookmark_link"><span id="bookmark"></span>加入我的最愛</a>
   <a id="edgecase_link" href="http://edgecase.com" target="_blank">EdgeCase</a>
 </nav>
     <h1 class="lab_title"><em>章節 42</em> 取得修改</h1>
@@ -39,16 +39,16 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 42</em>  取得修改</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to pull changes from a remote repository.</li>
+	<li>學習如何從遠端檔案庫取得修改。</li>
 </ul>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">cd ../cloned_hello
 git fetch
 git hist --all</pre>
-<p class="note red"><strong><span class="caps">NOTE</span>: Now in the <em>cloned_hello</em> repo</strong></p>
-<h4>Output:</h4>
+<p class="note red"><strong><span class="caps">注意</span>: 現在位於 <em>cloned_hello</em> 檔案庫。</strong></p>
+<h4>輸出:</h4>
 <pre class="sample">$ git fetch
 From /Users/jerrynummi/Projects/edgecase/git_immersion/auto/hello
    e1399d1..e18658c  master     -&gt; origin/master
@@ -65,19 +65,19 @@ $ git hist --all
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>At this point the repository has all the commits from the original repository, but they are not integrated into the the cloned repository&#8217;s local branches.</p>
-<p>Find the &#8220;Changed <span class="caps">README</span> in original repo&#8221; commit in the history above.  Notice that the commit includes &#8220;origin/master&#8221; and &#8220;origin/<span class="caps">HEAD</span>&#8221;.</p>
-<p>Now look at the &#8220;Updated Rakefile&#8221; commit.  You will see that it the local master branch points to this commit, not to the new commit that we just fetched.</p>
-<p>The upshot of this is that the &#8220;git fetch&#8221; command will fetch new commits from the remote repository, but it will not merge these commits into the local branches.</p>
-<h2>Check the <span class="caps">README</span> <em>01</em></h2>
-<p>We can demonstrate that the cloned <span class="caps">README</span> is unchanged.</p>
-<h4>Execute:</h4>
+<p>現在，複製的檔案庫也包含了原始檔案庫的所有修改，但尚未整合到複製的檔案庫內本機的分支。</p>
+<p>從上方的歷史記錄尋找 &#8220;Changed <span class="caps">README</span> in original repo&#8221;。 是否有注意到該送交包含了 &#8220;origin/master&#8221; 及 &#8220;origin/<span class="caps">HEAD</span>&#8221;。</p>
+<p>現在看到 &#8220;Updated Rakefile&#8221; 送交。 你會注意到本機的 master 分支指向此送交，而不是我們剛才取得的最新的送交。</p>
+<p>造成這個結果的原因是，&#8220;git fetch&#8221; 命令會取得所有遠端檔案庫的新送交，但是不會將這些送交合併到本機的分支。</p>
+<h2>檢查 <span class="caps">README</span> <em>01</em></h2>
+<p>我們可以證明複製的檔案庫中的 <span class="caps">README</span> 沒有改變。</p>
+<h4>執行:</h4>
 <pre class="instructions">cat README</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ cat README
 This is the Hello World example from the git tutorial.
 </pre>
-<p>See, no changes.</p>
+<p>看，沒有改變。</p>
   </div>
 
   <div id="index">
@@ -99,8 +99,8 @@ This is the Hello World example from the git tutorial.
           <li id="lab_11_link" data-lab-id="11"><a href="lab_11.html"><span>11:</span> 別名</a></li>
           <li id="lab_12_link" data-lab-id="12"><a href="lab_12.html"><span>12:</span> 取得舊版本</a></li>
           <li id="lab_13_link" data-lab-id="13"><a href="lab_13.html"><span>13:</span> 建立版本標籤</a></li>
-          <li id="lab_14_link" data-lab-id="14"><a href="lab_14.html"><span>14:</span> 復原本地端的修改 (在暫存之前)</a></li>
-          <li id="lab_15_link" data-lab-id="15"><a href="lab_15.html"><span>15:</span> 復原暫存區的修改 (在送交之前)</a></li>
+          <li id="lab_14_link" data-lab-id="14"><a href="lab_14.html"><span>14:</span> 復原本機的修改（在暫存之前）</a></li>
+          <li id="lab_15_link" data-lab-id="15"><a href="lab_15.html"><span>15:</span> 復原暫存區的修改（在送交之前）</a></li>
           <li id="lab_16_link" data-lab-id="16"><a href="lab_16.html"><span>16:</span> 復原已送交的修改</a></li>
           <li id="lab_17_link" data-lab-id="17"><a href="lab_17.html"><span>17:</span> 從分支中移除送交的修改</a></li>
           <li id="lab_18_link" data-lab-id="18"><a href="lab_18.html"><span>18:</span> 移除版本標籤</a></li>
@@ -116,9 +116,9 @@ This is the Hello World example from the git tutorial.
           <li id="lab_28_link" data-lab-id="28"><a href="lab_28.html"><span>28:</span> 合併</a></li>
           <li id="lab_29_link" data-lab-id="29"><a href="lab_29.html"><span>29:</span> 建立衝突</a></li>
           <li id="lab_30_link" data-lab-id="30"><a href="lab_30.html"><span>30:</span> 解決衝突</a></li>
-          <li id="lab_31_link" data-lab-id="31"><a href="lab_31.html"><span>31:</span> 重新定義參考基準 VS 合併</a></li>
-          <li id="lab_32_link" data-lab-id="32"><a href="lab_32.html"><span>32:</span> 重設 Greet 分支</a></li>
-          <li id="lab_33_link" data-lab-id="33"><a href="lab_33.html"><span>33:</span> 重設 Master 分支</a></li>
+          <li id="lab_31_link" data-lab-id="31"><a href="lab_31.html"><span>31:</span> 重新定義參考基準與合併的比較</a></li>
+          <li id="lab_32_link" data-lab-id="32"><a href="lab_32.html"><span>32:</span> 重置 Greet 分支</a></li>
+          <li id="lab_33_link" data-lab-id="33"><a href="lab_33.html"><span>33:</span> 重置 Master 分支</a></li>
           <li id="lab_34_link" data-lab-id="34"><a href="lab_34.html"><span>34:</span> 重新定義參考基準</a></li>
           <li id="lab_35_link" data-lab-id="35"><a href="lab_35.html"><span>35:</span> 合併至 Master 分支</a></li>
           <li id="lab_36_link" data-lab-id="36"><a href="lab_36.html"><span>36:</span> 多個檔案庫</a></li>

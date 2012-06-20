@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8"/>
   <title>章節 34 - Git Immersion - Brought to you by EdgeCase</title>
+  <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" media="screen" href="screen.css">
@@ -25,12 +25,12 @@
   <header id="header">
     <a href="index.html" id="home_link">Git Immersion</a>
     <nav id="pager">
-      <a id="arrow_next" class="arrow" href="lab_35.html">Next</a>
+      <a id="arrow_next" class="arrow" href="lab_35.html">下一頁</a>
   
-      <a id="arrow_previous" class="arrow" href="lab_33.html">Previous</a>
+      <a id="arrow_previous" class="arrow" href="lab_33.html">上一頁</a>
   
-  <a id="table_of_contents_link" href="#">Table of Contents</a>
-  <a id="bookmark_link"><span id="bookmark"></span>Bookmark this lab</a>
+  <a id="table_of_contents_link" href="#">目錄</a>
+  <a id="bookmark_link"><span id="bookmark"></span>加入我的最愛</a>
   <a id="edgecase_link" href="http://edgecase.com" target="_blank">EdgeCase</a>
 </nav>
     <h1 class="lab_title"><em>章節 34</em> 重新定義參考基準</h1>
@@ -39,17 +39,17 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 34</em>  重新定義參考基準</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Use the rebase command rather than the merge command.</li>
+	<li>使用重新定義參考基準命令代替合併命令。</li>
 </ul>
-<p>Ok, we are back in time before the first merge and we want to get the changes in master into our greet branch.</p>
-<p>This time we will use the rebase command instead of the merge command to bring in the changes from the master branch.</p>
-<h4>Execute:</h4>
+<p>好了，我們回到第一次合併前的狀態了，我們想把 master 的修改拿到 greet 分支。</p>
+<p>這次我們將用重新定義參考基準命令代替合併命令，來取得 master 分支的修改。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout greet
 git rebase master
 git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ go greet
 Switched to branch 'greet'
 $
@@ -71,15 +71,15 @@ $ git hist
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<h2>Merge VS Rebase <em>01</em></h2>
-<p>The final result of the rebase is very similar to the merge.  The greet branch now contains all of its changes, as well as all the changes from the master branch.  However, the commit tree is quite different.  The commit tree for the greet branch has been rewritten so that the master branch is a part of the commit history.  This leaves the chain of commits linear and much easier to read.</p>
-<h2>When to Rebase, When to Merge? <em>02</em></h2>
-<p>Don&#8217;t use rebase &#8230;</p>
+<h2>合併與重新定義參考基準的比較 <em>01</em></h2>
+<p>重新定義參考基準的結果與合併非常類似。 greet 分支現在包含了它自己所有的修改，以及 master 分支的所有修改。 然而，送交樹卻完全不同。 greet 分支的送交樹已經被改寫了，master 分支成為了送交記錄的一部份。 這讓送交鏈更連續且可讀性更好。</p>
+<h2>什麼時候需要重新定義參考基準，什麼時候需要合併? <em>02</em></h2>
+<p>別重新定義參考基準 &#8230;</p>
 <ol>
-	<li>If the branch is public and shared with others.  Rewriting publicly shared branches will tend to screw up other members of the team.</li>
-	<li>When the <em>exact</em> history of the commit branch is important (since rebase rewrites the commit history).</li>
+	<li>如果分支是公開的，且與他人共享。 改寫公開分享的分支會讓團隊的其他成員抓狂。</li>
+	<li>當分支的送交記錄的<em>精確度</em>是很重要的（因為重新定義參考基準會改寫送交記錄）。</li>
 </ol>
-<p>Given the above guidelines, I tend to use rebase for short-lived, local branches and merge for branches in the public repository.</p>
+<p>鑒於以上指導方針，我使用重新定義參考基準於生命週期短暫的本機分支，而取得公開檔案庫的分支時則使用合併。</p>
   </div>
 
   <div id="index">
@@ -101,8 +101,8 @@ $ git hist
           <li id="lab_11_link" data-lab-id="11"><a href="lab_11.html"><span>11:</span> 別名</a></li>
           <li id="lab_12_link" data-lab-id="12"><a href="lab_12.html"><span>12:</span> 取得舊版本</a></li>
           <li id="lab_13_link" data-lab-id="13"><a href="lab_13.html"><span>13:</span> 建立版本標籤</a></li>
-          <li id="lab_14_link" data-lab-id="14"><a href="lab_14.html"><span>14:</span> 復原本地端的修改 (在暫存之前)</a></li>
-          <li id="lab_15_link" data-lab-id="15"><a href="lab_15.html"><span>15:</span> 復原暫存區的修改 (在送交之前)</a></li>
+          <li id="lab_14_link" data-lab-id="14"><a href="lab_14.html"><span>14:</span> 復原本機的修改（在暫存之前）</a></li>
+          <li id="lab_15_link" data-lab-id="15"><a href="lab_15.html"><span>15:</span> 復原暫存區的修改（在送交之前）</a></li>
           <li id="lab_16_link" data-lab-id="16"><a href="lab_16.html"><span>16:</span> 復原已送交的修改</a></li>
           <li id="lab_17_link" data-lab-id="17"><a href="lab_17.html"><span>17:</span> 從分支中移除送交的修改</a></li>
           <li id="lab_18_link" data-lab-id="18"><a href="lab_18.html"><span>18:</span> 移除版本標籤</a></li>
@@ -118,9 +118,9 @@ $ git hist
           <li id="lab_28_link" data-lab-id="28"><a href="lab_28.html"><span>28:</span> 合併</a></li>
           <li id="lab_29_link" data-lab-id="29"><a href="lab_29.html"><span>29:</span> 建立衝突</a></li>
           <li id="lab_30_link" data-lab-id="30"><a href="lab_30.html"><span>30:</span> 解決衝突</a></li>
-          <li id="lab_31_link" data-lab-id="31"><a href="lab_31.html"><span>31:</span> 重新定義參考基準 VS 合併</a></li>
-          <li id="lab_32_link" data-lab-id="32"><a href="lab_32.html"><span>32:</span> 重設 Greet 分支</a></li>
-          <li id="lab_33_link" data-lab-id="33"><a href="lab_33.html"><span>33:</span> 重設 Master 分支</a></li>
+          <li id="lab_31_link" data-lab-id="31"><a href="lab_31.html"><span>31:</span> 重新定義參考基準與合併的比較</a></li>
+          <li id="lab_32_link" data-lab-id="32"><a href="lab_32.html"><span>32:</span> 重置 Greet 分支</a></li>
+          <li id="lab_33_link" data-lab-id="33"><a href="lab_33.html"><span>33:</span> 重置 Master 分支</a></li>
           <li id="lab_34_link" data-lab-id="34"><a href="lab_34.html"><span>34:</span> 重新定義參考基準</a></li>
           <li id="lab_35_link" data-lab-id="35"><a href="lab_35.html"><span>35:</span> 合併至 Master 分支</a></li>
           <li id="lab_36_link" data-lab-id="36"><a href="lab_36.html"><span>36:</span> 多個檔案庫</a></li>
