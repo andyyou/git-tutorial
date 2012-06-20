@@ -39,26 +39,26 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 23</em>  探索 Git 內部: 直接操作 Git 物件</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Explore the structure of the object store</li>
-	<li>Learn how to use the SHA1 hashes to find content in the repository</li>
+	<li>探索物件儲存的結構。</li>
+	<li>了解如何使用 SHA1 hashes 編碼查詢檔案庫中的資料內容。</li>
 </ul>
-<p>Now let&#8217;s use some tools to probe git objects directly.</p>
-<h2>Finding the Latest Commit <em>01</em></h2>
-<h4>Execute:</h4>
+<p>現在讓我們使用 git 提供的一些指令來直接查詢 git 物件（ .git 中的內容）</p>
+<h2>查出最新一次的送交<em>01</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git hist --max-count=1</pre>
-<p>This should show the latest commit made in the repository.  The SHA1 hash on your system is probably different that what is on mine, but you should see something like this.</p>
-<h4>Output:</h4>
+<p>這個指令將會顯示出檔案庫最新的一次送交。您實作中看到的 sha1 hash值可能和範例中的完全不同，不過您也應該看到類似的東西。</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist --max-count=1
 * 76ba0a7 2012-03-06 | Added a Rakefile. (HEAD, master) [Jim Weirich]</pre>
-<h2>Dumping the Latest Commit <em>02</em></h2>
-<p>Using the SHA1 hash from the commit listed above &#8230;</p>
-<h4>Execute:</h4>
+<h2>輸出（檢視/傾印/dump）最新的一次送交<em>02</em></h2>
+<p>使用上面查到的 SHA1 hash 來觀察物件紀錄的資料 &#8230;</p>
+<h4>執行:</h4>
 <pre class="instructions">git cat-file -t &lt;hash&gt;
 git cat-file -p &lt;hash&gt;</pre>
-<p>Here&#8217;s my output &#8230;</p>
-<h4>Output:</h4>
+<p>下面是我輸出的資料 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git cat-file -t 76ba0a7
 commit
 $ git cat-file -p 76ba0a7
@@ -69,31 +69,34 @@ committer Jim Weirich &lt;jim (at) edgecase.com&gt; 1331068328 -0500
 
 Added a Rakefile.
 </pre>
-<p class="note"><strong><span class="caps">NOTE</span>:</strong> If you defined the &#8216;type&#8217; and &#8216;dump&#8217; aliases from the aliases lab, then you can type <code>git type</code> and <code>git dump</code> rather than the longer cat-file commands (which I never remember).</p>
-<p>This is the dump of the commit object that is at the head of the master branch.  It looks a lot like the commit object from the presentation earlier.</p>
-<h2>Finding the Tree <em>03</em></h2>
-<p>We can dump the directory tree referenced in the commit.  This should be a description of the (top level) files in our project (for that commit).  Use the SHA1 hash from the &#8220;tree&#8221; line listed above.</p>
-<h4>Execute:</h4>
+<p class="note"><strong><span class="caps">注意</span>:</strong> 如果您在前面別名的章節有定義了 &#8216;type&#8217; 和 &#8216;dump&#8217; 的別名, 那現在您就可以直接使用<code>git type</code> 和 <code>git dump</code>，您可以使用它來代替 cat-file，比起使用 cat-file 這比較簡短。 (我總是記不住太長的指令XD).</p>
+<p>這個物件是 master 分支最近的一次送交（ commit ），這裡您可以稍微瞭解一下 git 基本上使用 blob, tag, commit, tree 這四種物件型別來分別記錄資料。您可以看出 參數 -t (type) 查到的是該 sha1 hash 的型別，而 -p 參數則記錄了該物件儲存的資料。</p>
+<h2>查詢樹狀結構 <em>03</em></h2>
+<p>我們輸出了這次送交的資料，從記錄中我們看到其實 git 是用 tree 這個物件型別來儲存目錄的檔案結構（樹狀結構），就是這次專案包含了哪些檔案並且個別應該是在哪個子目錄底下。值得注意的是 git 的 tree 型別只有記錄一層的結構（您可以就把它理解成目錄）然後如果需要子目錄那麼這個 tree 裡面就會再有一個 tree 物件。接著我們就用這個 tree 的 SHA1 hash 來觀察所謂的 tree 物件實際上記錄了些什麼。</p>
+<p>
+為了使您可以快速地掌握物件型別的意思，您可以將它想成是一種資料格式。舉例來說 commit 這個資料格式裡面就必須要包含 tree, parent, author , committer 這幾種資料。另外提到的是 commit 的 tree 他指向的就是這個專案最上面一層的目錄。
+</p>
+<h4>執行:</h4>
 <pre class="instructions">git cat-file -p &lt;treehash&gt;</pre>
-<p>Here&#8217;s what my tree looks like&#8230;</p>
-<h4>Output:</h4>
+<p>我們的樹狀結構看起來就像這樣&#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git cat-file -p 096b74c
 100644 blob 28e0e9d6ea7e25f35ec64a43f569b550e8386f90	Rakefile
 040000 tree e46f374f5b36c6f02fb3e9e922b79044f754d795	lib
 </pre>
-<p>Yep, I see the Rakefile and the lib directory.</p>
-<h2>Dumping the lib directory <em>04</em></h2>
-<h4>Execute:</h4>
+<p>沒錯，您會看到 Rakefile 和  lib 目錄。這樣是否能比較理解上面所表達的意思。</p>
+<h2>輸出 lib 目錄 <em>04</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git cat-file -p &lt;libhash&gt;</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git cat-file -p e46f374
 100644 blob c45f26b6fdc7db6ba779fc4c385d9d24fc12cf72	hello.rb
 </pre>
-<p>There&#8217;s the <code>hello.rb</code> file.</p>
-<h2>Dumping the <code>hello.rb</code> file <em>05</em></h2>
-<h4>Execute:</h4>
+<p>這邊就是顯示出 lib 目錄裡（ tree ）包含了 <code>hello.rb</code> ，另外您可能觀察到 blob 這個東西，是的！他就是 git 用來儲存一般內容檔案的格式，不管是圖片或者word文件都是用這個格式來儲存。</p>
+<h2>輸出 <code>hello.rb</code> 檔案 <em>05</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git cat-file -p &lt;rbhash&gt;</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git cat-file -p c45f26b
 # Default is World
 # Author: Jim Weirich (jim@somewhere.com)
@@ -101,9 +104,9 @@ name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<p>There you have it.  We&#8217;ve dumped commit objects, tree objects and blob objects directly from the git repository.  That&#8217;s all there is to it, blobs, trees and commits.</p>
-<h2>Explore On You Own <em>06</em></h2>
-<p>Explore the git repo manually on your own.  See if you can find the original hello.rb file from the very first commit by manually following the SHA1 hash references starting in the latest commit.</p>
+<p>到這裡您已經完成了探索並瞭解 git 的一些內部運作的原理，物件型別，然後針對 tree, commit 和 blob 物件去查詢紀錄的資料。</p>
+<h2>接著您可以到處玩玩看 <em>06</em></h2>
+<p>接著您應該試著自己去操作看看，看看您是否能夠掌握上面的原則，自己從 commit 一路手動查詢 SHA1 hash 觀察記錄的資料，然後找到您想確認的那份檔案的內容。</p>
   </div>
 
   <div id="index">

@@ -39,43 +39,43 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 22</em>  探索 Git 內部: .git 目錄</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn about the structure of the <code>.git</code> directory</li>
+	<li>了解 .git 目錄結構和 git 是如何用 .git 這個目錄記錄資訊。</li>
 </ul>
-<h2>The <code>.git</code> Directory <em>01</em></h2>
-<p>Time to do some exploring.  First, from the root of your project directory&#8230;</p>
-<h4>Execute:</h4>
+<h2> <code>.git</code> 目錄 <em>01</em></h2>
+<p>現在是時候讓我們更深入地瞭解 git 了。首先，先切換到您的專案目錄 &#8230;</p>
+<h4>執行:</h4>
 <pre class="instructions">ls -C .git</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ ls -C .git
 COMMIT_EDITMSG	config		index		objects
 HEAD		description	info		refs
 ORIG_HEAD	hooks		logs
 </pre>
-<p>This is the magic directory where all the git &#8220;stuff&#8221; is stored. Let&#8217;s peek in the objects directory.</p>
-<h2>The Object Store <em>02</em></h2>
-<h4>Execute:</h4>
+<p>這是個很神奇的目錄，它儲存了所有 git 需要的資料。接著讓我們瞧瞧這些物件目錄（objects directory）。</p>
+<h2>物件儲存（ git 的物件形態 ） <em>02</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">ls -C .git/objects</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ ls -C .git/objects
 09	24	30	43	69	78	9c	b8	e4	pack
 11	27	3c	49	6b	97	af	c4	e7
 1b	28	40	59	76	9a	b5	d2	info
 </pre>
-<p>You should see a bunch of directories with 2 letter names.  The directory names are the first two letters of the sha1 hash of the object stored in git.</p>
-<h2>Deeper into the Object Store <em>03</em></h2>
-<h4>Execute:</h4>
+<p>您應該會看到一堆名稱是兩個字母的目錄。這些目錄對應 git 儲存的檔案（或目錄），然後 git 使用 sha1 hash 為這些資料命名，您所看到的目錄名稱其實就是這些 hash 的前兩碼。</p>
+<h2>深入探索物件儲存e <em>03</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">ls -C .git/objects/&lt;dir&gt;</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ ls -C .git/objects/09
 6b74c56bfc6b40e754fc0725b8c70b2038b91e	9fb6f9d3a104feb32fcac22354c4d0e8a182c1
 </pre>
-<p>Look in one of the two-letter directories.  You should see some files with 38-character names.  These are the files that contain the objects stored in git.  These files are compressed and encoded, so looking at their contents directly won&#8217;t be very helpful, but we will take a closer look in a bit.</p>
-<h2>Config File <em>04</em></h2>
-<h4>Execute:</h4>
+<p>讓我們看看其中的一個目錄。您應該會看到一些檔案，檔名是由38個字母（hash）。這些檔案的內容是 git 用來記錄檔案資料的物件。這些都是經過壓縮和加密。 因此沒辦法直接開啓查看裡面的內容。不過 git 有提供一些指令，以方便我們查看裡面真正被保存的內容。</p>
+<h2>設定檔 <em>04</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">cat .git/config</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ cat .git/config
 [core]
 	repositoryformatversion = 0
@@ -87,14 +87,14 @@ ORIG_HEAD	hooks		logs
 	name = Jim Weirich
 	email = jim (at) edgecase.com
 </pre>
-<p>This is a project-specific configuration file.  Config entries in here will override the config entries in the <code>.gitconfig</code> file in your home directory, at least for this project.</p>
-<h2>Branches and Tags <em>05</em></h2>
-<h4>Execute:</h4>
+<p>這是隸屬於該專案的設定檔。 當進入這個專案這個設定檔的設定值會蓋過全域的設定檔（該使用者的設定檔），全域的設定檔也會影響這個專案他的路徑在您的家目錄中的 <code>.gitconfig</code> </p>
+<h2>分支和標簽<em>05</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">ls .git/refs
 ls .git/refs/heads
 ls .git/refs/tags
 cat .git/refs/tags/v1</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ ls .git/refs
 heads
 tags
@@ -106,16 +106,28 @@ v1-beta
 $ cat .git/refs/tags/v1
 40543214b69016a1f079a0d95ff88cc7421e9b54
 </pre>
-<p>You should recognize the files in the tags subdirectory.  Each file corresponds to a tag you created with the <code>git tag</code> command earlier. Its content is just the hash of the commit tied to the tag.</p>
-<p>The heads directory is similar, but is used for branches rather than tags.  We only have one branch at the moment, so all you will see is master in this directory.</p>
-<h2>The <span class="caps">HEAD</span> File <em>06</em></h2>
-<h4>Execute:</h4>
+<p>您應該可以認出在 tag 目錄下的檔案。每個檔案都對應您剛剛用 git tag 建立的標簽。裡面的內容就是標簽對應的 hash 。您可以進一步使用 git cat-file -p 去查看內容。就會發現它記錄了一些資訊。這在 git 的物件型別中稱之為 commit 就是記錄每個版本的資訊。</p>
+<p>heads目錄也一樣，不過是分支的名稱。我們現在只有一個分支，所以您只能看到目錄裡有一個 master 的檔案。</p>
+<pre class="sample">
+$ cat .git/refs/tags/v1
+539ca38380a0352c829ab5f8393d1dc77950a266
+
+$ git cat-file -p 539ca38380a0352c829ab5f8393d1dc77950a266
+tree 8090068ee35ad95bf52accc791313d742ea3b08e
+parent 6deffafb4c1db2eea8effc2b3e6214c9f79d81d1
+author AndyYou <andyyu0920@gmail.com> 1339766324 +0800
+committer AndyYou <andyyu0920@gmail.com> 1339766324 +0800
+
+Added a comment
+</pre>
+<h2><span class="caps">HEAD</span> 檔案 <em>06</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">cat .git/HEAD</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ cat .git/HEAD
 ref: refs/heads/master
 </pre>
-<p>The <span class="caps">HEAD</span> file contains a reference to the current branch.  It should be a reference to master at this point.</p>
+<p><span class="caps">HEAD</span> 檔案記錄了指向目前的分支。現在您應該會看到指向 master 。 </p>
   </div>
 
   <div id="index">

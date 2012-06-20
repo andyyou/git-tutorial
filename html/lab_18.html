@@ -39,16 +39,16 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 18</em>  移除版本標籤</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Remove the oops tag (housekeeping)</li>
+	<li>移除 oops 標籤 (保持檔案庫的整潔)</li>
 </ul>
-<h2>Removing tag oops <em>01</em></h2>
-<p>The oops tag has served its purpose.  Let&#8217;s remove it and allow the commits it referenced to be garbage collected.</p>
-<h4>Execute:</h4>
+<h2>移除標簽 oops <em>01</em></h2>
+<p>標籤 oops 已經完成了他的使命。接著讓我們移除它，這意味著即使您回到之前的版本只要標簽存在該記錄就不會被回收，一但把標簽移除就會發現它被回收了。</p>
+<h4>執行:</h4>
 <pre class="instructions">git tag -d oops
 git hist --all</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git tag -d oops
 Deleted tag 'oops' (was 9ad227a)
 $ git hist --all
@@ -56,7 +56,7 @@ $ git hist --all
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>The oops tag is no longer listed in the repository.</p>
+<p> oops  已經不會在出現在歷史紀錄中了。</p>
   </div>
 
   <div id="index">

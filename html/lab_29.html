@@ -39,27 +39,27 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 29</em>  建立衝突</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Create a conflicting change in the master branch.</li>
+	<li>創造一個衝突的情況。</li>
 </ul>
-<h2>Switch back to master and create a conflict <em>01</em></h2>
-<p>Switch back to the master branch and make this change:</p>
-<h4>Execute:</h4>
+<h2>在 master 分支，創造衝突的狀況 <em>01</em></h2>
+<p>切換回 master 分支，編輯操作如下:</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout master</pre>
-<h4>File: <em>lib/hello.rb</em></h4>
+<h4>檔案: <em>lib/hello.rb</em></h4>
 <pre class="file">puts "What's your name"
 my_name = gets.strip
 
 puts "Hello, #{my_name}!"
 </pre>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">git add lib/hello.rb
 git commit -m "Made interactive"</pre>
-<h2>View the Branches <em>02</em></h2>
-<h4>Execute:</h4>
+<h2>檢視所有分支 <em>02</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git hist --all</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist --all
 *   a0750b6 2012-03-06 | Merge branch 'master' into greet (greet) [Jim Weirich]
 |\  
@@ -77,9 +77,9 @@ git commit -m "Made interactive"</pre>
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>Master at commit &#8220;Added <span class="caps">README</span>&#8221; has been merged to the greet branch, but there is now an additional commit on master that has not been merged back to greet.</p>
-<h2>Up Next <em>03</em></h2>
-<p>The latest change in master conflicts with some existing changes in greet.  Next we will resolve those changes.</p>
+<p>master分支送交的版本 “Added README” 內容已經被合併到 greet 分支了，不過現在我們還有一個新的修改（版本”Made interactive“）還沒送交到 greet。</p>
+<h2>下一步 <em>03</em></h2>
+<p> master 和 greet 此時已經產生了一些衝突，下一章節讓我們來看看怎麼解決這個問題。</p>
   </div>
 
   <div id="index">

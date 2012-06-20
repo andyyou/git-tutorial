@@ -39,17 +39,17 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 28</em>  合併</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to merge two diverging branches to bring the changes back into a single branch.</li>
+	<li>學習如何合併兩個不同的分支，把所有修改整合到這個分支裡。（這裡意思是把其他分支的修改整合到某一個分支裡，另一個分支並不會不見）</li>
 </ul>
-<h2>Merge the branches <em>01</em></h2>
-<p>Merging brings the changes in two branches together.  Let&#8217;s go back to the greet branch and merge master onto greet.</p>
-<h4>Execute:</h4>
+<h2>合併分支（merge） <em>01</em></h2>
+<p>把兩個分離的支線（branch）整合在一起。現在讓我們切回 greet 這個分支然後把 master 的修改合併過來。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout greet
 git merge master
 git hist --all</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout greet
 Switched to branch 'greet'
 $ git merge master
@@ -72,10 +72,10 @@ $ git hist --all
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>By merging master into your greet branch periodically, you can pick up any changes to master and keep your changes in greet compatible with changes in the mainline.</p>
-<p>However, it does produce ugly commit graphs. Later we will look at the option of rebasing rather than merging.</p>
-<h2>Up Next <em>02</em></h2>
-<p>But first, what if the changes in master conflict with the changes in greet?</p>
+<p>定期把 master 的修改合併到 greet 分支 ，您也可以把修改整合到 master 保持 greet 和 master 的修改是一致的。</p>
+<p>然而，這麼做您的送交樹呈現出來的圖形會非常混亂。稍後我們會學到 rebase 這個指令（重新定義參考基準），它可以用來整理整個歷史紀錄。</p>
+<h2>下一步 <em>02</em></h2>
+<p>在這之前，如果我們在合併的時候 master 和 greet 產生衝突怎麼辦？</p>
   </div>
 
   <div id="index">

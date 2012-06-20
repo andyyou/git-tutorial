@@ -39,14 +39,14 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 25</em>  切換分支</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to navigate between the branches of a repository</li>
+	<li>了解如何在檔案庫中切換到各分支。</li>
 </ul>
-<p>You now have two branches in your project:</p>
-<h4>Execute:</h4>
+<p>在檔案庫中現在已經有兩個分支了:</p>
+<h4>執行:</h4>
 <pre class="instructions">git hist --all</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist --all
 * e2257cb 2012-03-06 | Updated Rakefile (HEAD, greet) [Jim Weirich]
 * a93f079 2012-03-06 | Hello uses Greeter [Jim Weirich]
@@ -58,12 +58,12 @@
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<h2>Switch to the Master Branch <em>01</em></h2>
-<p>Just use the <code>git checkout</code> command to switch between branches.</p>
-<h4>Execute:</h4>
+<h2>切換到主分支（ master ） <em>01</em></h2>
+<p>使用 <code>git checkout</code> 指令就可以切換到指定的分支。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout master
 cat lib/hello.rb</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout master
 Switched to branch 'master'
 $ cat lib/hello.rb
@@ -73,12 +73,12 @@ name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<p>You are now on the master branch.  You can tell because the hello.rb file doesn&#8217;t use the <code>Greeter</code> class.</p>
-<h2>Switch Back to the Greet Branch. <em>02</em></h2>
-<h4>Execute:</h4>
+<p>現在您的狀態已經切換到主分支（master）了。  怎麼確認？因為您的 hello.rb 檔案並沒有使用 <code>Greeter</code> class.</p>
+<h2>再切回 Greet 分支. <em>02</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git checkout greet
 cat lib/hello.rb</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout greet
 Switched to branch 'greet'
 $ cat lib/hello.rb
@@ -90,7 +90,7 @@ name = ARGV.first || "World"
 greeter = Greeter.new(name)
 puts greeter.greet
 </pre>
-<p>The contents of the <code>lib/hello.rb</code> confirms we are back on the <strong>greet</strong> branch.</p>
+<p>查看 lib/hellor.rb 的內容就可以確定您已經回到 <strong>greet</strong>  分支。</p>
   </div>
 
   <div id="index">

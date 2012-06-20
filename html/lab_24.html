@@ -39,20 +39,20 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 24</em>  建立分支</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to create a local branch in a repository</li>
+	<li>了解如何在本機的檔案庫建立一個分支。</li>
 </ul>
-<p>It&#8217;s time to do a major rewrite of the hello world functionality. Since this might take awhile, you&#8217;ll want to put these changes into a separate branch to isolate them from changes in master.</p>
-<h2>Create a Branch <em>01</em></h2>
-<p>Let&#8217;s call our new branch &#8216;greet&#8217;.</p>
-<h4>Execute:</h4>
+<p>現在我們需要在 hello world 這個專案作一些功能上的重大修改，他可能會需要很長一段時間。您會希望能夠在一個獨立的分支上做修改，這樣就不會影響 master 這個版本主要的功能，很多情況下您可能需要實驗一些功能性地開發，但在確認之前您不希望這些功能直接就整合到主要的版本（穩定版）。</p>
+<h2>建立分支 <em>01</em></h2>
+<p>讓我們來建立一個叫做 greet 的分支。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout -b greet
 git status</pre>
-<p class="note"><strong><span class="caps">NOTE</span>:</strong> <code>git checkout -b &lt;branchname&gt;</code> is a shortcut for <code>git branch &lt;branchname&gt;</code> followed by a <code>git checkout &lt;branchname&gt;</code>.</p>
-<p>Notice that the git status command reports that you are on the &#8216;greet&#8217; branch.</p>
-<h2>Changes for Greet: Add a Greeter class. <em>02</em></h2>
-<h4>File: <em>lib/greeter.rb</em></h4>
+<p class="note"><strong><span class="caps">注意</span>:</strong> <code>git checkout -b &lt;branchname&gt;</code> 這是一個簡化的指令，它跟 <code>git branch &lt;branchname&gt;</code> 然後 <code>git checkout &lt;branchname&gt;</code>是同樣意思。</p>
+<p>注意：接著您可以用 git status 或者 git branch 指令，來確認您現在是在 &#8216;greet&#8217; 分支。</p>
+<h2>編輯 Greet 分支: 加入 Greeter class. <em>02</em></h2>
+<h4>檔案: <em>lib/greeter.rb</em></h4>
 <pre class="file">class Greeter
   def initialize(who)
     @who = who
@@ -62,12 +62,12 @@ git status</pre>
   end
 end
 </pre>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">git add lib/greeter.rb
 git commit -m "Added greeter class"</pre>
-<h2>Changes for Greet: Modify the main program <em>03</em></h2>
-<p>Update the hello.rb file to use greeter</p>
-<h4>File: <em>lib/hello.rb</em></h4>
+<h2>編輯 Greet 分支: 修改主程式<em>03</em></h2>
+<p>編輯 hello.rb 檔案，改用剛剛建立的 greeter 類別</p>
+<h4>檔案: <em>lib/hello.rb</em></h4>
 <pre class="file">require 'greeter'
 
 # Default is World
@@ -76,12 +76,12 @@ name = ARGV.first || "World"
 greeter = Greeter.new(name)
 puts greeter.greet
 </pre>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">git add lib/hello.rb
 git commit -m "Hello uses Greeter"</pre>
-<h2>Changes for Greet: Update the Rakefile <em>04</em></h2>
-<p>Update the Rakefile to use an external ruby process</p>
-<h4>File: <em>Rakefile</em></h4>
+<h2>編輯 Greet 分支: 修改 Rakefile <em>04</em></h2>
+<p>編輯 Rakefile 讓其可以使用Ruby的外部程式檔案</p>
+<h4>檔案: <em>Rakefile</em></h4>
 <pre class="file">#!/usr/bin/ruby -wKU
 
 task :default =&gt; :run
@@ -90,11 +90,11 @@ task :run do
   ruby '-Ilib', 'lib/hello.rb'
 end
 </pre>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">git add Rakefile
 git commit -m "Updated Rakefile"</pre>
-<h2>Up Next <em>05</em></h2>
-<p>We now have a new branch called <strong>greet</strong> with 3 new commits on it. Next we will learn how to navigate and switch between branches.</p>
+<h2>下一步 <em>05</em></h2>
+<p>現在我們多了一個新的分支叫做 <strong>greet</strong> 並且有 3 次新的送交。下一章節我們將學會如何切換在不同的分支作業。</p>
   </div>
 
   <div id="index">
