@@ -39,15 +39,15 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 27</em>  檢視分支狀態</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to view diverging branches in a repository.</li>
+	<li>了解如何檢視檔案庫中分歧的分支（支線）</li>
 </ul>
-<h2>View the Current Branches <em>01</em></h2>
-<p>We now have two diverging branches in the repository.  Use the following log command to view the branches and how they diverge.</p>
-<h4>Execute:</h4>
+<h2>檢視目前的分支 <em>01</em></h2>
+<p>我們現在有兩個分歧的分支。  我們將使用 git log 指令來觀察分支是如何變化和分歧。</p>
+<h4>執行:</h4>
 <pre class="instructions">git hist --all</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist --all
 * e2257cb 2012-03-06 | Updated Rakefile (greet) [Jim Weirich]
 * a93f079 2012-03-06 | Hello uses Greeter [Jim Weirich]
@@ -61,8 +61,8 @@
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>Here is our first chance to see the <code>--graph</code> option on <code>git hist</code> in action. Adding the <code>--graph</code> option to <code>git log</code> causes it to draw the commit tree using simple <span class="caps">ASCII</span> characters.  We can see both branches (greet and master), and that the master branch is the current <span class="caps">HEAD</span>. The common ancestor to both branches is the &#8220;Added a Rakefile&#8221; branch.</p>
-<p>The <code>--all</code> flag makes sure that we see all the branches.  The default is to show only the current branch.</p>
+<p>這裡是我們第一次有機會看到 git hist 指令中加入 --graph 參數會有什麼效果。 git log 加入 --graph 參數，Console畫面會畫出由 ASCII 字元組成的送交樹（就是整個歷史紀錄的發展路線）。我們可以看到這兩個分支（greet和master），而且 master 是目前的 HEAD 。兩個分支源自於同一個分支，它的註解是“Added a Rakefile”這個版本。</p>
+<p> <code>--all</code> 參數可以確保我們看到所有分支的歷史記錄。預設值只會顯示目前的分支歷史紀錄。</p>
   </div>
 
   <div id="index">

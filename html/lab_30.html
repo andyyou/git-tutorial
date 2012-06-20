@@ -39,16 +39,16 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 30</em>  解決衝突</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to handle conflicts during a merge</li>
+	<li>學習處理合併時產生的衝突Learn how to handle conflicts during a merge</li>
 </ul>
-<h2>Merge master to greet <em>01</em></h2>
-<p>Now go back to the greet branch and try to merge the new master.</p>
-<h4>Execute:</h4>
+<h2>將 master 合併到 greet <em>01</em></h2>
+<p>現在切換到 greet 分支branch 然後試著合併剛剛送交的 master 版本</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout greet
 git merge master</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout greet
 Switched to branch 'greet'
 $ git merge master
@@ -56,8 +56,8 @@ Auto-merging lib/hello.rb
 CONFLICT (content): Merge conflict in lib/hello.rb
 Automatic merge failed; fix conflicts and then commit the result.
 </pre>
-<p>If you open lib/hello.rb, you will see:</p>
-<h4>File: <em>lib/hello.rb</em></h4>
+<p>如果您現在開啟 lib/hello.rb, 您將會看到:</p>
+<h4>檔案: <em>lib/hello.rb</em></h4>
 <pre class="file">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
 require 'greeter'
 
@@ -75,10 +75,10 @@ my_name = gets.strip
 puts "Hello, #{my_name}!"
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; master
 </pre>
-<p>The first section is the version on the head of the current branch (greet).  The second section is the version on the master branch.</p>
-<h2>Fix the Conflict <em>02</em></h2>
-<p>You need to manually resolve the conflict.  Modify <code>lib/hello.rb</code> to be the following.</p>
-<h4>File: <em>lib/hello.rb</em></h4>
+<p>上面第一段的部分是您目前分支的內容 (greet)。第二個部分用 ========== 分開這是 master 分支的內容。</p>
+<h2>修復衝突 <em>02</em></h2>
+<p>您需要手動來解決衝突的情況。  修改 <code>lib/hello.rb</code> 檔案跟下面一樣。</p>
+<h4>檔案: <em>lib/hello.rb</em></h4>
 <pre class="file">require 'greeter'
 
 puts "What's your name"
@@ -87,17 +87,17 @@ my_name = gets.strip
 greeter = Greeter.new(my_name)
 puts greeter.greet
 </pre>
-<h2>Commit the Conflict Resolution <em>03</em></h2>
-<h4>Execute:</h4>
+<h2>送交處理完畢的版本<em>03</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git add lib/hello.rb
 git commit -m "Merged master fixed conflict."</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git add lib/hello.rb
 $ git commit -m "Merged master fixed conflict."
 [greet 3165f66] Merged master fixed conflict.
 </pre>
-<h2>Advanced Merging <em>04</em></h2>
-<p>git doesn&#8217;t provide any graphical merge tools, but it will gladly work with any third party merge tool you wish to use.  See <a href="http://onestepback.org/index.cgi/Tech/Git/UsingP4MergeWithGit.red">http://onestepback.org/index.cgi/Tech/Git/UsingP4MergeWithGit.red</a> for a description of using the Perforce merge tool with git.</p>
+<h2>進階的合併技巧 <em>04</em></h2>
+<p>git 並沒有提供任何圖形化介面的合併工具，不過 git 允許您使用其他的第三方工具。查看 <a href="http://onestepback.org/index.cgi/Tech/Git/UsingP4MergeWithGit.red">http://onestepback.org/index.cgi/Tech/Git/UsingP4MergeWithGit.red</a> ，可以在找到 git 使用 Perforce 合併工具的教學文件。</p>
   </div>
 
   <div id="index">

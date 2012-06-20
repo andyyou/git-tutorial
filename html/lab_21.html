@@ -39,13 +39,16 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 21</em>  更多的結構</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Add another file to our repository</li>
+	<li>加入其他檔案到檔案庫。</li>
 </ul>
-<h2>Now add a Rakefile <em>01</em></h2>
-<p>Let&#8217;s add a Rakefile to our repository.  The following one will do nicely.</p>
-<h4>File: <em>Rakefile</em></h4>
+<h2>讓我們來增加一個 Rakefile <em>01</em></h2>
+<p>增加一支 Rakefile 到我們的檔案庫，就像下面這樣:Let&#8217;s add a Rakefile to our repository.  The following one will do nicely.</p>
+<ul>
+	<li>簡易說明：Rakefile 是一支可以包含任何可執行的 Ruby 檔案，通常用來把常用的任務整理成簡短的指令，這邊只是大概讓讀者理解這是用來做什麼的。，</li>
+</ul>
+<h4>檔案: <em>Rakefile</em></h4>
 <pre class="file">#!/usr/bin/ruby -wKU
 
 task :default =&gt; :run
@@ -54,14 +57,14 @@ task :run do
   require './lib/hello'
 end
 </pre>
-<p>Add and commit the change.</p>
-<h4>Execute:</h4>
+<p>送交這次的編輯</p>
+<h4>執行:</h4>
 <pre class="instructions">git add Rakefile
 git commit -m "Added a Rakefile."</pre>
-<p>You should be able to use Rake to run your hello program now.</p>
-<h4>Execute:</h4>
+<p>您應該可以使用 Rake 來執行 hello 這支程式。</p>
+<h4>執行:</h4>
 <pre class="instructions">rake</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ rake
 Hello, World!
 </pre>

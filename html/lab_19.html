@@ -39,53 +39,53 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 19</em>  修正送交</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to amend an existing commit</li>
+	<li>了解如何修正已存在的送交。</li>
 </ul>
-<h2>Change the program then commit <em>01</em></h2>
-<p>Add an author comment to the program.</p>
-<h4>File: <em>hello.rb</em></h4>
+<h2>編輯程式然後送交 <em>01</em></h2>
+<p>加入一行作者資訊的註解到程式中。</p>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file"># Default is World
 # Author: Jim Weirich
 name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">git add hello.rb
 git commit -m "Add an author comment"</pre>
-<h2>Oops, Should have an Email <em>02</em></h2>
-<p>After you make the commit, you realize that any good author comment should have an email included.  Update the hello program to include an email.</p>
-<h4>File: <em>hello.rb</em></h4>
+<h2>哎呀, 我忘記加上 Email <em>02</em></h2>
+<p>在您送交之後，您覺得一個比較適當的作者資訊應該包含Email。 接著編輯 hello 程式把 Email 資訊加進去。</p>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file"># Default is World
 # Author: Jim Weirich (jim@somewhere.com)
 name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<h2>Amend the Previous Commit <em>03</em></h2>
-<p>We really don&#8217;t want a separate commit for just the email.  Let&#8217;s amend the previous commit to include the email change.</p>
-<h4>Execute:</h4>
+<h2>修改上一個版本的送交 <em>03</em></h2>
+<p>我們真的不想分離出這次的送交只因為我們忘了打上Email。  這個時候我們可以修正上一個版的註解並且把這次的修改整合到這個版本。</p>
+<h4>執行:</h4>
 <pre class="instructions">git add hello.rb
 git commit --amend -m "Add an author/email comment"</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git add hello.rb
 $ git commit --amend -m "Add an author/email comment"
 [master 9c78ad8] Add an author/email comment
  1 files changed, 2 insertions(+), 1 deletions(-)
 </pre>
-<h2>Review the History <em>04</em></h2>
-<h4>Execute:</h4>
+<h2>再次檢視歷史紀錄 <em>04</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist
 * 9c78ad8 2012-03-06 | Add an author/email comment (HEAD, master) [Jim Weirich]
 * 4054321 2012-03-06 | Added a comment (v1) [Jim Weirich]
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>We can see the original &#8220;author&#8221; commit is now gone, and it is replaced by the &#8220;author/email&#8221; commit.  You can achieve the same effect by resetting the branch back one commit and then recommitting the new changes.</p>
+<p>我們可以看到原來的“author”版本的送交已經不見了。取代他的是“author/email”這個版本。 當然如果您重置到上一次的送交（ git reset ）在送交一次版本也可以達到同樣的效果，但這招看起來比較迅速方便。</p>
   </div>
 
   <div id="index">
