@@ -39,15 +39,15 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 35</em>  合併至 Master 分支</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>We&#8217;ve kept our greet branch up to date with master (via rebase), now let&#8217;s merge the greet changes back into the master branch.</li>
+	<li>我們已經(透過重新定義參考基準)將 master 的修改更新到 greet 分支，現在讓我們將 greet 的修改合併回 master 分支。</li>
 </ul>
-<h2>Merge greet into master <em>01</em></h2>
-<h4>Execute:</h4>
+<h2>將 greet 合併到 master <em>01</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git checkout master
 git merge greet</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout master
 Switched to branch 'master'
 $
@@ -60,12 +60,12 @@ Fast-forward
  3 files changed, 13 insertions(+), 3 deletions(-)
  create mode 100644 lib/greeter.rb
 </pre>
-<p>Because the head of master is a direct ancestor of the head of the greet branch, git is able to do a fast-forward merge.  When fast-forwarding, the branch pointer is simply moved forward to point to the same commit as the greeter branch.</p>
-<p>There will never be conflicts in a fast-forward merge.</p>
-<h2>Review the logs <em>02</em></h2>
-<h4>Execute:</h4>
+<p>由於 master 分支的頂端是 greet 分支頂端的祖先，git 可以做快速合併。在快速模式下，分支的指標只是簡單的移動，指向相同的 greet 分支的送交</p>
+<p>在快速合併時，永遠不會有衝突。</p>
+<h2>查看歷史記錄 <em>02</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist
 * e1399d1 2012-03-06 | Updated Rakefile (HEAD, master, greet) [Jim Weirich]
 * 183c6ad 2012-03-06 | Hello uses Greeter [Jim Weirich]
@@ -78,7 +78,7 @@ Fast-forward
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>The greet and master branches are now identical.</p>
+<p>現在 greet 分支和 master 分支一致了。</p>
   </div>
 
   <div id="index">

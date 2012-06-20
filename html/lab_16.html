@@ -39,41 +39,42 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 16</em>  復原已送交的修改</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to revert changes that have been committed to a local repository.</li>
+	<li>學習如何還原本地端已經送交的變更。（檔案庫在實務上通常會有本地端，伺服器端）意思是撤銷已經 commit 的紀錄</li>
 </ul>
-<h2>Undoing Commits <em>01</em></h2>
-<p>Sometimes you realized that a change that you have already committed was not correct and you wish to undo that commit.  There are several ways of handling that issue, and the way we are going to use in this lab is always safe.</p>
-<p>Essentially we will undo the commit by creating a new commit that reverses the unwanted changes.</p>
-<h2>Change the file and commit it. <em>02</em></h2>
-<p>Change the <code>hello.rb</code> file to the following.</p>
-<h4>File: <em>hello.rb</em></h4>
+<h2>撤銷送交(移除送交)<em>01</em></h2>
+<p>有時候您會突然意識到剛剛送交的修改有問題，希望可以移除這次的送交。有好幾種方式可以達到這個需求， 這一章節我們先學習最安全的一種方式。</p>
+<p>嚴格來說我們撤銷提交就等於是回到提交前的版本，修改剛剛突然想到的錯誤後在送交。</p>
+<h2>編輯檔案並送交 <em>02</em></h2>
+<p>編輯 <code>hello.rb</code> 檔案如下</p>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file"># This is an unwanted but committed change
 name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">git add hello.rb
 git commit -m "Oops, we didn't want this commit"</pre>
-<h2>Create a Reverting Commit <em>03</em></h2>
-<p>To undo a committed change, we need to generate a commit that removes the changes introduced by our unwanted commit.</p>
-<h4>Execute:</h4>
+<h2>復原已送交的修改<em>03</em></h2>
+<p>為了移除已經送交的修改，我們需要在產生一次送交來說明你移除了哪些修改。舉例：您有版本 A -> B -> C -> D ，版本D 是錯誤的版本，你可以使用 revert HEAD 就會回到版本C在產生一次送交在版本D之後。我們先暫稱為版本E 關係會變成 A -> B -> C -> D -> E(C') 但E的內容跟C是相同的，有些書籍會用C'來表示這跟C的內容是一樣的。
+</p>
+<h4>執行:</h4>
 <pre class="instructions">git revert HEAD</pre>
-<p>This will pop you into the editor.  You can edit the default commit message or leave it as is.  Save and close the file. You should see &#8230;</p>
-<h4>Output:</h4>
+<p>到這一步會進入編輯器，您可以編輯預設的 註解 訊息。然後存檔離開。 您將會看到 &#8230;</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git revert HEAD --no-edit
 [master 9ad227a] Revert "Oops, we didn't want this commit"
  1 files changed, 1 insertions(+), 1 deletions(-)
 </pre>
-<p>Since we were undoing the very last commit we made, we were able to use <code>HEAD</code> as the argument to revert.  We can revert any arbitrary commit earlier in history by simply specifying its hash value.</p>
-<p class="note"><strong>Note:</strong> The <code>--no-edit</code> in the output can be ignored. It was necessary to generate the output without opening the editor.</p>
-<h2>Check the log <em>04</em></h2>
-<p>Checking the log shows both the unwanted and the reverting commits in our repository.</p>
-<h4>Execute:</h4>
+<p>因為我們要回復的是最後一次的送交，因此我們可以用HEAD來當作版本參數（不使用 hash 編碼）。因此如果您需要回復到歷史記錄上的任何一個版本只需要指定 hash 就可以回復到該版本。</p>
+<p class="note"><strong>注意:</strong>  <code>--no-edit</code> 參數如同字面上的意思就是不彈出編輯器。除非您不想編輯註解的訊息直接採用預設值，產生的註解就會像 Revert "回復該版的注解內容"</p>
+<h2>檢視歷史紀錄 <em>04</em></h2>
+<p>檢視記錄會發現您不想提交的內容和修正完的內容都被檔案庫的歷史紀錄記錄起來了。</p>
+<h4>執行:</h4>
 <pre class="instructions">git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist
 * 9ad227a 2012-03-06 | Revert "Oops, we didn't want this commit" (HEAD, master) [Jim Weirich]
 * d20d016 2012-03-06 | Oops, we didn't want this commit [Jim Weirich]
@@ -81,9 +82,9 @@ git commit -m "Oops, we didn't want this commit"</pre>
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>This technique will work with any commit (although you may have to resolve conflicts).  It is safe to use even on branches that are publicly shared on remote repositories.</p>
-<h2>Up Next <em>05</em></h2>
-<p>Next, let&#8217;s look at a technique that can be used to remove the most recent commits from the repository history.</p>
+<p>這一招可以讓您回復到任何版本 (雖然有時候您必須手動解決衝突).  即使使用任何共用的遠端檔案庫或者分支，這一招都是安全的。</p>
+<h2>下一步 <em>05</em></h2>
+<p>接著，讓我們看看下一招。可以移除送交和歷史紀錄。</p>
   </div>
 
   <div id="index">

@@ -39,30 +39,30 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 40</em>  遠端分支</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn about local VS remote branches</li>
+	<li>了解本機分支與遠端分支的差異</li>
 </ul>
-<p>Let&#8217;s look at the branches available in our cloned repository.</p>
-<h4>Execute:</h4>
+<p>讓我們看看複製的檔案庫中可用的分支。</p>
+<h4>執行:</h4>
 <pre class="instructions">git branch</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git branch
 * master
 </pre>
-<p>That&#8217;s it, only the master branch is listed.  Where is the greet branch?  The <strong>git</strong> <strong>branch</strong> command only lists the local branches by default.</p>
-<h2>List Remote Branches <em>01</em></h2>
-<p>Try this to see all the branches:</p>
-<h4>Execute:</h4>
+<p>就這些，只列出了 master 分支。 greet 分支在哪呢? <strong>git</strong> <strong>branch</strong> 命令預設只會列出本機的分支。</p>
+<h2>列出遠端分支 <em>01</em></h2>
+<p>試試這個來查看所有分支:</p>
+<h4>執行:</h4>
 <pre class="instructions">git branch -a</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git branch -a
 * master
   remotes/origin/HEAD -&gt; origin/master
   remotes/origin/greet
   remotes/origin/master
 </pre>
-<p>Git has all the commits from the original repository, but branches in the remote repository are not treated as local branches here.  If we want our own <strong>greet</strong> branch, we need to create it ourselves. We will see how to do that in a minute.</p>
+<p>Git 包含了從原始檔案庫來的所有送交，但在遠端檔案庫的分支不被視為本機分支。 如果我們想有自己的 <strong>greet</strong> 分支，我們需要自己建立它。 具體做法稍後就會看到。</p>
   </div>
 
   <div id="index">

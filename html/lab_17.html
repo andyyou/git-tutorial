@@ -39,25 +39,25 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 17</em>  從分支中移除送交的修改</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn how to remove the most recent commits from a branch</li>
+	<li>了解如何移除最新一次的送交（包含 log 中的歷史紀錄也移除）</li>
 </ul>
-<p>The <code>revert</code> command of the previous section is a powerful command that lets us undo the effects of any commit in the repository. However, both the original commit and the &#8220;undoing&#8221; commit are visible in the branch history (using the <code>git log</code> command).</p>
-<p>Often we make a commit and immediately realize that it was a mistake.  It would be nice to have a &#8220;take back&#8221; command that would allow us to pretend that the incorrect commit never happened.  The &#8220;take back&#8221; command would even prevent the bad commit from showing up the <code>git log</code> history.  It would be as if the bad commit never happened.</p>
-<h2>The <code>reset</code> command <em>01</em></h2>
-<p>We&#8217;ve already seen the <code>reset</code> command and have used it to set the staging area to be consistent with a given commit (we used the <span class="caps">HEAD</span> commit in our previous lab).</p>
-<p>When given a commit reference (i.e. a hash, branch or tag name), the <code>reset</code> command will &#8230;</p>
+<p>上一章節我們教了 <code>revert</code> 這個強大的指令，它可以讓我們回到之前的任何一個版本。不過原本（錯誤）的送交和修正過的送交都會在歷史紀錄（log）中記錄。 (用 <code>git log</code> 指令就可以查看).</p>
+<p>有時後我們送交之後立刻意識到有一些錯誤，為了讓歷史紀錄看起來比較簡潔，或者不想讓其他開發者看到這次錯誤地送交XD。有一個“回復”的指令可以讓這次的錯誤送交看起來像完全沒發生過，這個“回復”指令甚至不會讓這次錯誤的送交顯示在 git log 的歷史記錄中，就像完全沒有發生過一樣。</p>
+<h2> <code>reset</code> 指令 <em>01</em></h2>
+<p>我們在之前的章節已經使用過 <code>reset</code> 指令，回想一下當時我們用它來還原暫存區（Staging Area），一般情況下我們就是使用 git reset HEAD 把加入暫存區的檔案移除。（上一章節我們是回復到HEAD版本）</p>
+<p>當我們指定一個 reset 的版本（hash編碼，分支，或者標籤） <code>reset</code> 指令會執行的動作 &#8230;</p>
 <ol>
-	<li>Rewrite the current branch to point to the specified commit</li>
-	<li>Optionally reset the staging area to match the specified commit</li>
-	<li>Optionally reset the working directory to match the specified commit</li>
+	<li>覆寫目前的分支並且指定到該次的送交，指的就是在指定版本之後的記錄都會不見（單純執行 git log）</li>
+	<li>根據選用的參數，暫存區的內容為指定的版本</li>
+	<li>根據選用的參數，工作目錄的內容設定為指定版本</li>
 </ol>
-<h2>Check Our History <em>02</em></h2>
-<p>Let&#8217;s do a quick check of our commit history.</p>
-<h4>Execute:</h4>
+<h2>檢視歷史紀錄<em>02</em></h2>
+<p>讓我快速地來觀察一下歷史紀錄（log）</p>
+<h4>執行:</h4>
 <pre class="instructions">git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist
 * 9ad227a 2012-03-06 | Revert "Oops, we didn't want this commit" (HEAD, master) [Jim Weirich]
 * d20d016 2012-03-06 | Oops, we didn't want this commit [Jim Weirich]
@@ -65,17 +65,18 @@
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>We see that we have an &#8220;Oops&#8221; commit and a &#8220;Revert Oops&#8221; commit as the last two commits made in this branch.  Let&#8217;s remove them using reset.</p>
-<h2>First, Mark this Branch <em>03</em></h2>
-<p>But before we remove the commits, let&#8217;s mark the latest commit with a tag so we can find it again.</p>
-<h4>Execute:</h4>
+<p>現在我們可以看到 &#8220;Oops&#8221; 和 &#8220;Revert Oops&#8221; 這兩次地送交記錄。 接著讓我們用 reset 移除他們。
+</p>
+<h2>首先，讓我們為這個版本做個標籤 <em>03</em></h2>
+<p>在我們移除送交之前，我們先為這個最新的版本設定一個標籤，以方便我們之後再次還原。</p>
+<h4>執行:</h4>
 <pre class="instructions">git tag oops</pre>
-<h2>Reset to Before Oops <em>04</em></h2>
-<p>Looking at the log history (above), we see that the commit tagged &#8216;v1&#8217; is the commit right before the bad commit.  Let&#8217;s reset the branch to that point.  Since that branch is tagged, we can use the tag name in the reset command (if it wasn&#8217;t tagged, we could just use the hash value).</p>
-<h4>Execute:</h4>
+<h2>重置到 Oops 之前的版本 <em>04</em></h2>
+<p>查看之前的歷史紀錄，我們看到有一個 v1 標籤的版本，它剛好就在我們送出的錯誤版本之前。接著，讓我們把分支重置到這個版本。由於這個分支有標簽名稱，因此我們可以在 reset 指令中使用（如果沒有 tag 則使用 hash 編碼）。</p>
+<h4>執行:</h4>
 <pre class="instructions">git reset --hard v1
 git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git reset --hard v1
 HEAD is now at 4054321 Added a comment
 $ git hist
@@ -83,12 +84,12 @@ $ git hist
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>Our master branch now points to the v1 commit and the Oops commit and the Revert Oops commit are no longer in the branch.  The <code>--hard</code> parameter indicates that the working directory should be updated to be consistent with the new branch head.</p>
-<h2>Nothing is Ever Lost <em>05</em></h2>
-<p>But what happened to the bad commits?  It turns out that the commits are still in the repository.  In fact, we can still reference them.  Remember that at the beginning of this lab we tagged the reverting commit with the tag &#8220;oops&#8221;.  Let&#8217;s look at <em>all</em> the commits.</p>
-<h4>Execute:</h4>
+<p>我們看到現在主分支指向 v1 這個版本，而且  Oops 和 Revert Oops 的紀錄已經不見了。注意這個時候只有暫存區被修改，透過 git status 查看會發現工作目錄的內容還停留在重置之前。接著透過 <code>--hard</code> 這個指令參數可以強制把工作目錄也重置到指定的版本。</p>
+<h2>其實您沒有真的刪除任何東西 <em>05</em></h2>
+<p>然後，那些您送錯的版本怎麼呢？其實他們還留在檔案庫的記錄中。我們還是可以回復剛剛那些送交，還記得我們在一開始先設定了一個標籤“oops”嗎？現在我們透過 --all 參數來查看<em>”所有“</em>送交紀錄。</p>
+<h4>執行:</h4>
 <pre class="instructions">git hist --all</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist --all
 * 9ad227a 2012-03-06 | Revert "Oops, we didn't want this commit" (oops) [Jim Weirich]
 * d20d016 2012-03-06 | Oops, we didn't want this commit [Jim Weirich]
@@ -96,10 +97,78 @@ $ git hist
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>Here we see that the bad commits haven&#8217;t disappeared.  They are still in the repository.  It&#8217;s just that they are no longer listed in the master branch.  If we hadn&#8217;t tagged them, they would still be in the repository, but there would be no way to reference them other than using their hash names.  Commits that are unreferenced remain in the repository until the system runs the garbage collection software.</p>
-<h2>Dangers of Reset <em>06</em></h2>
-<p>Resets on local branches are generally safe.  Any &#8220;accidents&#8221; can usually be recovered from by just resetting again with the desired commit.</p>
-<p>However, if the branch is shared on remote repositories, resetting can confuse other users sharing the branch.</p>
+<p>現在我們看到了錯誤地送交其實並沒有完全被刪除，他們還在檔案庫的記錄中。只是他們不會再顯示在主分支的列表中。如果我們沒有設定標簽，他仍然會在檔案庫裡，只是你只能用 hash 去引用它。不能指定的版本會一直在檔案庫中直到系統進行回收他才會被清除掉。</p>
+<h2>重置的風險<em>06</em></h2>
+<p>一般來說在自己本地端進行重置都是安全的。如果出現小“意外”，一般再次重置到指定的版本在送交就能解決問題了。</p>
+<p>然而，如果這個專案分支是需要發佈在共用的遠端檔案庫，重置可能會使其他使用者混亂。</p>
+<h2>詳細的流程說明<em>07</em></h2>
+<p>
+在本節的一開始我們簡短的說明了 git reset 會執行的動作
+</p>
+<ol>
+	<li>覆寫目前的分支並且指定到該次的送交，指的就是在指定版本之後的記錄都會不見（單純執行 git log）</li>
+	<li>根據選用的參數，暫存區的內容為指定的版本</li>
+	<li>根據選用的參數，工作目錄的內容設定為指定版本</li>
+</ol>
+<p>
+在實務上，您比較常用到的做法是:<br />
+1. 透過 --hard 參數 讓工作目錄，暫存區都跟指定版本相同，這部分比較單純易瞭解。<br/><br />
+2. 另一種就是使用 git reset &lt; hash &gt; 在不加 --hard 參數的情形下，暫存區 (Staging Area)會被設置成版本的檔案。但工作目錄並沒有改變，所以此時你使用 git status 會看到未被追蹤的檔案。事實上，您如果使用 git 底層的指令 git ls-files 配合 git cat-file -p 查詢。可以理解狀態被拆解成兩個層次，暫存區的檔案已經被還原成指定的版本。但是 git status 上還有一層是未被追蹤的檔案，接著我們使用 git checkout 放棄工作目錄的變更，就會看到工作目錄下的檔案回復到指定的版本。但因為暫存區和檔案庫的檔案的確是相同的，所以再次使用 git status 會顯示沒有任何提交。
+</p>
+<pre class="sample">
+#這邊的檔案結構可能跟您目前的實作不同，此部分是追加的以使您比較容易理解：
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+
+$ git hist --max-count=4
+* 450a0a2 2012-06-19 | C (HEAD, C, master) [AndyYou]
+* 0ad4048 2012-06-19 | B (B) [AndyYou]
+* 8e5240b 2012-06-19 | A (A) [AndyYou]
+* d386544 2012-06-19 | Clear config for test reset [AndyYou]
+
+# 直接 reset 到版本 A
+$ git reset 8e5240b
+Unstaged changes after reset:
+M	README
+
+# 狀態回應工作目錄下的README有異動但未追蹤
+$ git status
+# On branch master
+# Changes not staged for commit:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   README
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+# 直接顯示工作目錄下的檔案內容
+$ cat README 
+Clear ----- That go test for reset command
+A
+B
+C
+
+# 這裡先介紹一個底層的指令用來顯示 git 在 .git 目錄中記錄的資料
+$ git ls-files --stage
+100644 d503181a5b85a15cdc836343e1c5b41a9c6011cb 0	README
+100644 3dc4da16ac4e3b95e8a45f2676946a82e772a757 0	Rakefile
+100644 51fb4dce46dc651beca48593f21884515d6a6fd7 0	lib/greeter.rb
+100644 332f6f56c9ca34b46bb5b5a6a803fa6db6e748fd 0	lib/hello.rb
+
+# 透過 hash 直接顯示物件紀錄的資料 此時顯示的是在暫存區的檔案內容
+$ git cat-file -p d503181a5b85a15cdc836343e1c5b41a9c6011cb
+Clear ----- That go test for reset command
+A
+
+# 如果把目前工作目錄下的編輯直接用 checkout 刪除掉檔案就回到版本 A 證明了暫存區的確被還原到指定版本而不是中間的版本 B
+$ git checkout README
+$ cat README 
+Clear ----- That go test for reset command
+A
+
+</pre>
   </div>
 
   <div id="index">

@@ -33,22 +33,22 @@
   <a id="bookmark_link"><span id="bookmark"></span>Bookmark this lab</a>
   <a id="edgecase_link" href="http://edgecase.com" target="_blank">EdgeCase</a>
 </nav>
-    <h1 class="lab_title"><em>章節 33</em> 重設 Master 分支</h1>
+    <h1 class="lab_title"><em>章節 33</em> 重置 Master 分支</h1>
     <a href="http://edgecase.com" target=_blank" id="other_edgecase_link">EdgeCase</a>
   </header>
 
   <div id="main_content">
-    <h1 class="lab_title"><em>章節 33</em>  重設 Master 分支</h1>
-<h3>Goals</h3>
+    <h1 class="lab_title"><em>章節 33</em>  重置 Master 分支</h1>
+<h3>學習目標</h3>
 <ul>
-	<li>Reset the master branch to the point before the conflicting commit.</li>
+	<li>重置 master 分支到有衝突的送交前。</li>
 </ul>
-<h2>Reset the master branch <em>01</em></h2>
-<p>When we added the interactive mode to the master branch, we made a change that conflicted with changes in the greet branch. Let&#8217;s rewind the master branch to a point before the conflicting change.  This allows us to demonstrate the rebase command without worrying about conflicts.</p>
-<h4>Execute:</h4>
+<h2>重置 master 分支 <em>01</em></h2>
+<p>當我們加入互動模式到 master 分支時，我們的修改會與 greet 分支的修改產生衝突。 讓我們重置 master 分支到有衝突的修改之前。 這使我們能夠展示 rebase 命令而不必擔心衝突。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout master
 git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist
 * 6b6beca 2012-03-06 | Made interactive (HEAD, master) [Jim Weirich]
 * 3ce0095 2012-03-06 | Added README [Jim Weirich]
@@ -59,12 +59,12 @@ git hist</pre>
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>The &#8216;Added <span class="caps">README</span>&#8217; commit is the one directly before the conflicting interactive mode.  We will reset the master branch to &#8216;Added <span class="caps">README</span>&#8217; branch.</p>
-<h4>Execute:</h4>
+<p>&#8216;Added <span class="caps">README</span>&#8217; 送交是導致衝突的互動模式之前的最後一個送交。 我們將把 master 分支重置到 &#8216;Added <span class="caps">README</span>&#8217; 分支。</p>
+<h4>執行:</h4>
 <pre class="instructions">git reset --hard &lt;hash&gt;
 git hist --all</pre>
-<p>Review the log.  It should look like the repository has been wound back in time to the point before we merged anything.</p>
-<h4>Output:</h4>
+<p>查看歷史記錄。 它看起來應該已經回到我們合併之前的狀態了。</p>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist --all
 * e2257cb 2012-03-06 | Updated Rakefile (greet) [Jim Weirich]
 * a93f079 2012-03-06 | Hello uses Greeter [Jim Weirich]

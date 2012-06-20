@@ -41,24 +41,24 @@
     <h1 class="lab_title"><em>章節 15</em>  復原暫存區的修改 (在送交之前)</h1>
 <h3>學習目標</h3>
 <ul>
-	<li>了解如何還原已加入暫存的變更。</li>
+	<li>了解如何還原已加入暫存的變更。移除追蹤。</li>
 </ul>
-<h2>Change the file and stage the change <em>01</em></h2>
-<p>Modify the <code>hello.rb</code> file to have a bad comment</p>
-<h4>File: <em>hello.rb</em></h4>
+<h2>編輯檔案並加入追蹤 <em>01</em></h2>
+<p>修改 <code>hello.rb</code> 加入註解</p>
+<h4>檔案: <em>hello.rb</em></h4>
 <pre class="file"># This is an unwanted but staged comment
 name = ARGV.first || "World"
 
 puts "Hello, #{name}!"
 </pre>
-<p>And then go ahead and stage it.</p>
-<h4>Execute:</h4>
+<p>接著將它加入追蹤。</p>
+<h4>執行:</h4>
 <pre class="instructions">git add hello.rb</pre>
-<h2>Check the Status <em>02</em></h2>
-<p>Check the status of your unwanted change.</p>
-<h4>Execute:</h4>
+<h2>檢視狀態 <em>02</em></h2>
+<p>檢視狀態現在在暫存區的是您不想送交的內容</p>
+<h4>執行:</h4>
 <pre class="instructions">git status</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git status
 # On branch master
 # Changes to be committed:
@@ -67,28 +67,29 @@ puts "Hello, #{name}!"
 #	modified:   hello.rb
 #
 </pre>
-<p>The status output shows that the change has been staged and is ready to be committed.</p>
-<h2>Reset the Staging Area <em>03</em></h2>
-<p>Fortunately the status output tells us exactly what we need to do to unstage the change.</p>
-<h4>Execute:</h4>
+<p>現在 git status 顯示這些異動已經加入暫存區了而且準備可以送交。</p>
+<h2>重設暫存區（Staging Area） <em>03</em></h2>
+<p>幸虧狀態顯示告知我們如何重設暫存區（把追蹤的檔案從暫存區移除）。</p>
+<h4>執行:</h4>
 <pre class="instructions">git reset HEAD hello.rb</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git reset HEAD hello.rb
 Unstaged changes after reset:
 M	hello.rb
 </pre>
-<p>The <code>reset</code> command resets the staging area to be whatever is in <span class="caps">HEAD</span>.  This clears the staging area of the change we just staged.</p>
-<p>The <code>reset</code> command (by default) doesn&#8217;t change the working directory.  So the working directory still has the unwanted comment in it.  We can use  the <code>checkout</code> command of the previous lab to remove the unwanted change from the working directory.</p>
-<h2>Checkout the Committed Version <em>04</em></h2>
-<h4>Execute:</h4>
+<p> <code>git reset</code> 指令重新設定了暫存區或者說清除了 staging area，就是把 Staging Area 設定成跟 <span class="caps">HEAD</span>版本檔案內容一致。</p>
+<p><code>reset</code> 命令預設的情況下並不會改變工作目錄。所以工作目錄裡依然保留了你剛剛實驗的註解。 我們可以再利用 <code>checkout</code> 還原工作目錄到當下的版本。</p>
+<p>總結一下就是 reset 針對 Staging Area 而 checkout 針對工作目錄，兩者都是使當下狀態跟檔案庫 HEAD 一致。</p>
+<h2>簽出上一次送交的版本 <em>04</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git checkout hello.rb
 git status</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git status
 # On branch master
 nothing to commit (working directory clean)
 </pre>
-<p>And our working directory is clean once again.</p>
+<p>工作目錄狀態又再一次變得單純（沒有任何變動，跟檔案庫一致）。</p>
   </div>
 
   <div id="index">

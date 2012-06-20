@@ -39,17 +39,17 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 34</em>  重新定義參考基準</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Use the rebase command rather than the merge command.</li>
+	<li>使用重新定義參考基準命令代替合併命令。</li>
 </ul>
-<p>Ok, we are back in time before the first merge and we want to get the changes in master into our greet branch.</p>
-<p>This time we will use the rebase command instead of the merge command to bring in the changes from the master branch.</p>
-<h4>Execute:</h4>
+<p>好了，我們回到第一次合併前的狀態了，我們想把 master 的修改拿到 greet 分支。</p>
+<p>這次我們將用重新定義參考基準命令代替合併命令，來取得 master 分支的修改。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout greet
 git rebase master
 git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ go greet
 Switched to branch 'greet'
 $
@@ -71,15 +71,15 @@ $ git hist
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<h2>Merge VS Rebase <em>01</em></h2>
-<p>The final result of the rebase is very similar to the merge.  The greet branch now contains all of its changes, as well as all the changes from the master branch.  However, the commit tree is quite different.  The commit tree for the greet branch has been rewritten so that the master branch is a part of the commit history.  This leaves the chain of commits linear and much easier to read.</p>
-<h2>When to Rebase, When to Merge? <em>02</em></h2>
-<p>Don&#8217;t use rebase &#8230;</p>
+<h2>合併與重新定義參考基準的比較 <em>01</em></h2>
+<p>重新定義參考基準的結果與合併非常類似。 greet 分支現在包含了它自己所有的修改，以及 master 分支的所有修改。 然而，送交樹卻完全不同。 greet 分支的送交樹已經被改寫了，master 分支成為了送交記錄的一部份。 這讓送交鏈更連續且可讀性更好。</p>
+<h2>什麼時候需要重新定義參考基準，什麼時候需要合併? <em>02</em></h2>
+<p>別重新定義參考基準 &#8230;</p>
 <ol>
-	<li>If the branch is public and shared with others.  Rewriting publicly shared branches will tend to screw up other members of the team.</li>
-	<li>When the <em>exact</em> history of the commit branch is important (since rebase rewrites the commit history).</li>
+	<li>如果分支是公開的，且與他人共享。 改寫公開分享的分支會讓團隊的其他成員抓狂。</li>
+	<li>當分支的送交記錄的<em>精確度</em>是很重要的(因為重新定義參考基準會改寫送交記錄)。</li>
 </ol>
-<p>Given the above guidelines, I tend to use rebase for short-lived, local branches and merge for branches in the public repository.</p>
+<p>鑒於以上指導方針，我使用重新定義參考基準於生命週期短暫的本機分支，而取得公開檔案庫的分支時則使用合併。</p>
   </div>
 
   <div id="index">

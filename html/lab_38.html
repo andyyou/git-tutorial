@@ -39,27 +39,27 @@
 
   <div id="main_content">
     <h1 class="lab_title"><em>章節 38</em>  檢視複製的檔案庫</h1>
-<h3>Goals</h3>
+<h3>學習目標</h3>
 <ul>
-	<li>Learn about branches on remote repositories.</li>
+	<li>了解遠端檔案庫的分支。</li>
 </ul>
-<h2>Look at the cloned repository <em>01</em></h2>
-<p>Let&#8217;s take a look at the cloned repository.</p>
-<h4>Execute:</h4>
+<h2>查看複製的檔案庫 <em>01</em></h2>
+<p>讓我們一起來看看複製的檔案庫。</p>
+<h4>執行:</h4>
 <pre class="instructions">cd cloned_hello
 ls</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ cd cloned_hello
 $ ls
 README
 Rakefile
 lib
 </pre>
-<p>You should see a list of all the files in the top level of the original repository (<code>README</code>, <code>Rakefile</code> and <code>lib</code>).</p>
-<h2>Review the Repository History <em>02</em></h2>
-<h4>Execute:</h4>
+<p>你應該可以看到原始檔案庫頂層目錄中的所有檔案清單 (<code>README</code>, <code>Rakefile</code> and <code>lib</code>)。</p>
+<h2>瀏覽檔案庫歷史記錄 <em>02</em></h2>
+<h4>執行:</h4>
 <pre class="instructions">git hist --all</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist --all
 * e1399d1 2012-03-06 | Updated Rakefile (HEAD, origin/master, origin/greet, origin/HEAD, master) [Jim Weirich]
 * 183c6ad 2012-03-06 | Hello uses Greeter [Jim Weirich]
@@ -72,9 +72,9 @@ lib
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>You should now see a list of the all the commits in the new repository, and it should (more or less) match the history of commits in the original repository.  The only difference should be in the names of the branches.</p>
-<h2>Remote branches <em>03</em></h2>
-<p>You should see a <strong>master</strong> branch (along with <strong><span class="caps">HEAD</span></strong>) in the history list.  But you will also have number of strangely named branches (<strong>origin/master</strong>, <strong>origin/greet</strong> and <strong>origin/<span class="caps">HEAD</span></strong>).  We&#8217;ll talk about them in a bit.</p>
+<p>你現在應該可以看到新檔案庫內所有送交的清單，而且它應該(或多或少)和原始檔案庫的送交記錄相同。唯一的差異是分支的名稱。</p>
+<h2>遠端分支 <em>03</em></h2>
+<p>你應該在歷史記錄清單中看到 <strong>master</strong> 分支(伴隨著 <strong><span class="caps">HEAD</span></strong>)。 但你也會看到數個怪異的分支名稱(<strong>origin/master</strong>、<strong>origin/greet</strong> 及 <strong>origin/<span class="caps">HEAD</span></strong>)。 稍待一會我們將談談這些名稱。</p>
   </div>
 
   <div id="index">

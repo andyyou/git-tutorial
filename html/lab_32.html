@@ -33,23 +33,23 @@
   <a id="bookmark_link"><span id="bookmark"></span>Bookmark this lab</a>
   <a id="edgecase_link" href="http://edgecase.com" target="_blank">EdgeCase</a>
 </nav>
-    <h1 class="lab_title"><em>章節 32</em> 重設 Greet 分支</h1>
+    <h1 class="lab_title"><em>章節 32</em> 重置 Greet 分支</h1>
     <a href="http://edgecase.com" target=_blank" id="other_edgecase_link">EdgeCase</a>
   </header>
 
   <div id="main_content">
-    <h1 class="lab_title"><em>章節 32</em>  重設 Greet 分支</h1>
-<h3>Goals</h3>
+    <h1 class="lab_title"><em>章節 32</em>  重置 Greet 分支</h1>
+<h3>學習目標</h3>
 <ul>
-	<li>Reset the greet branch to the point before the first merge.</li>
+	<li>重置 greet 分支到第一次合併前的狀態。</li>
 </ul>
-<h2>Reset the greet branch <em>01</em></h2>
-<p>Let&#8217;s go back in time on the greet branch to the point <em>before</em> we merged master onto it.  We can <strong>reset</strong> a branch to any commit we want. Essentially this is modifying the branch pointer to point to anywhere in the commit tree.</p>
-<p>In this case we want to back greet up to the point prior to the merge with master.  We need to find the last commit before the merge.</p>
-<h4>Execute:</h4>
+<h2>重置 greet 分支 <em>01</em></h2>
+<p>讓我們將 greet 分支回到合併 master <em>之前</em>的狀態。 我們可以<strong>重置</strong>一個分支到任何想要的送交。 實質上，這是修改分支的指標指向送交樹的任意位置。</p>
+<p>在這，我們希望將 greet 回到合併 master 之前的狀態。 我們要先找到合併前的最後一次送交。</p>
+<h4>執行:</h4>
 <pre class="instructions">git checkout greet
 git hist</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git checkout greet
 Already on 'greet'
 $ git hist
@@ -71,18 +71,18 @@ $ git hist
 * 1b754e9 2012-03-06 | Added a default value (v1-beta) [Jim Weirich]
 * 3053491 2012-03-06 | Using ARGV [Jim Weirich]
 * 3cbf83b 2012-03-06 | First Commit [Jim Weirich]</pre>
-<p>That&#8217;s a bit hard to read, but looking at the data we see that the &#8220;Updated Rakefile&#8221; commit was the last commit on the greet branch before merging.  Let&#8217;s reset the greet branch to that commit.</p>
-<h4>Execute:</h4>
+<p>這有點難以閱讀，不過仔細看看資料，我們可以看到 &#8220;Updated Rakefile&#8221; 是 greet 分支合併前的最後一次送交。 讓我們重置 greet 分支到這個送交。</p>
+<h4>執行:</h4>
 <pre class="instructions">git reset --hard &lt;hash&gt;</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git reset --hard e2257cb
 HEAD is now at e2257cb Updated Rakefile
 </pre>
-<h2>Check the branch. <em>02</em></h2>
-<p>Look at the log for the greet branch.  We no longer have the merge commits in its history.</p>
-<h4>Execute:</h4>
+<h2>檢查分支。 <em>02</em></h2>
+<p>檢查 greet 分知的歷史記錄。 歷史記錄中已經不再有合併的送交了。</p>
+<h4>執行:</h4>
 <pre class="instructions">git hist --all</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git hist --all
 * e2257cb 2012-03-06 | Updated Rakefile (HEAD, greet) [Jim Weirich]
 * a93f079 2012-03-06 | Hello uses Greeter [Jim Weirich]

@@ -41,18 +41,18 @@
     <h1 class="lab_title"><em>章節 39</em>  Origin 是什麼?</h1>
 <h3>Goals</h3>
 <ul>
-	<li>Learn about naming remote repositories.</li>
+	<li>了解遠端檔案庫命名。</li>
 </ul>
-<h4>Execute:</h4>
+<h4>執行:</h4>
 <pre class="instructions">git remote</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git remote
 origin
 </pre>
-<p>We see that the cloned repository knows about a remote repository named origin.  Let&#8217;s see if we can get more information about origin:</p>
-<h4>Execute:</h4>
+<p>我們看到複製的檔案庫得知遠端檔案庫名為 origin。 讓我們看看能否得到更多關於 origin 的資訊:</p>
+<h4>執行:</h4>
 <pre class="instructions">git remote show origin</pre>
-<h4>Output:</h4>
+<h4>輸出:</h4>
 <pre class="sample">$ git remote show origin
 * remote origin
   Fetch URL: /Users/jerrynummi/Projects/edgecase/git_immersion/auto/hello
@@ -68,7 +68,7 @@ origin
   Local ref configured for 'git push':
     master pushes to master (up to date)
 </pre>
-<p>Now we see that the remote repository &#8220;origin&#8221; is simply the original <strong>hello</strong> repository.  Remote repositories typically live on a separate machine, possibly a centralized server.  As we can see here, however, they can just as well point to a repository on the same machine. There is nothing particularly special about the name &#8220;origin&#8221;, however the convention is to use the name &#8220;origin&#8221; for the primary centralized repository (if there is one).</p>
+<p>現在我們看到遠端檔案庫 &#8220;origin&#8221; 就是原始 <strong>hello</strong> 檔案庫。 通常，遠端檔案庫會在別的機器，或許是一個伺服器。 然而，正如我們所看到，它們一樣可以指向同一台機器上的檔案庫。 &#8220;origin&#8221; 這個名字並沒有特殊意義，只是按照慣例會使用這個名稱代表主要的檔案庫 (如果確實存在)。</p>
   </div>
 
   <div id="index">
